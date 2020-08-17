@@ -77,7 +77,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <string.h>
 
 #ifndef NDDR_BANKS
-#define NDDR_BANKS 1
+#define NDDR_BANKS 2
 #endif
 
 int main(int argc, char **argv) {
@@ -139,6 +139,13 @@ int main(int argc, char **argv) {
 
   short ddr_banks = NDDR_BANKS;
 
+  /* prepare data to be written to the device */
+  unsigned char *map_input_buffer0 = (unsigned char*)aligned_alloc(4096, globalbuffersize*sizeof(unsigned char));
+  unsigned char *map_output_buffer0 = (unsigned char*)aligned_alloc(4096, globalbuffersize*sizeof(unsigned char));
+  for (size_t i = 0; i < globalbuffersize; i++) {
+    map_input_buffer0[i] = input_host[i];
+  }
+
   /* Index for the ddr pointer array: 4=4, 3=3, 2=2, 1=2 */
   char num_buffers = ddr_banks;
   if (ddr_banks == 1)
@@ -146,62 +153,47 @@ int main(int argc, char **argv) {
 
   /* buffer[0] is input0
    * buffer[1] is output0
-   * buffer[2] is input1
-   * buffer[3] is output1 */
+  */
   cl::Buffer *buffer[num_buffers];
 
-  OCL_CHECK(err, buffer[0] = new cl::Buffer(context, CL_MEM_READ_WRITE, globalbuffersize, NULL, &err));
-  OCL_CHECK(err, buffer[1] = new cl::Buffer(context, CL_MEM_READ_WRITE, globalbuffersize, NULL, &err));
-
-  /*
-   * Using setArg(), i.e. setting kernel arguments, explicitly before copying
-   * host
-   * memory to device memory allowing runtime to associate buffer with correct
-   * DDR banks automatically.
-  */
+  OCL_CHECK(err, buffer[0] = new cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, globalbuffersize, map_input_buffer0, &err));
+  OCL_CHECK(err, buffer[1] = new cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, globalbuffersize, map_output_buffer0, &err));
 
   /* Set the kernel arguments */
-  int arg_index = 0;
-  int buffer_index = 0;
   cl_ulong num_blocks = globalbuffersize / 64;
 
-  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(arg_index++, *(buffer[buffer_index++])));
-  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(arg_index++, *(buffer[buffer_index++])));
-  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(arg_index++, num_blocks));
+  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(0, *(buffer[0])));
+  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(1, *(buffer[1])));
+  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(2, num_blocks));
 
   double dbytes = globalbuffersize;
   double dmbytes = dbytes / (((double)1024) * ((double)1024));
-  printf("Starting kernel to read/write %.0lf MB bytes from/to global "
-         "memory... \n",
-         dmbytes);
+  printf("Starting kernel to read/write %.0lf MB bytes from/to global " "memory... \n", dmbytes);
 
-  /* Write input buffer */
-  /* Map input buffer for PCIe write */
-  unsigned char *map_input_buffer0;
-  OCL_CHECK(err, map_input_buffer0 = (unsigned char *)q.enqueueMapBuffer( *(buffer[0]), CL_FALSE, CL_MAP_WRITE_INVALIDATE_REGION, 0, globalbuffersize, NULL, NULL, &err));
-  OCL_CHECK(err, err = q.finish());
+  // Create events for read,compute and write
 
-  /* prepare data to be written to the device */
-  for (size_t i = 0; i < globalbuffersize; i++) {
-    map_input_buffer0[i] = input_host[i];
-  }
-  OCL_CHECK(err, err = q.enqueueUnmapMemObject(*(buffer[0]), map_input_buffer0));
-
-  OCL_CHECK(err, err = q.finish());
-
+  std::vector<cl::Event> host_2_device_Wait;
+  std::vector<cl::Event> krnl_Wait;
+  std::vector<cl::Event> flagWait;
+  cl::Event host_2_device_Done, krnl_Done, device_2_host_Done;
   unsigned long start, end, nsduration;
-  cl::Event event;
+
+  /* Migrate the buffer Data to Device */
+  q.enqueueMigrateMemObjects({*(buffer[0])}, 0,NULL,&host_2_device_Done);
+  host_2_device_Wait.push_back(host_2_device_Done);
 
   /* Execute Kernel */
-  OCL_CHECK(err, err = q.enqueueTask(krnl_global_bandwidth, NULL, &event));
-  OCL_CHECK(err, err = event.wait());
-  end = OCL_CHECK(err, event.getProfilingInfo<CL_PROFILING_COMMAND_END>(&err));
-  start = OCL_CHECK(err, event.getProfilingInfo<CL_PROFILING_COMMAND_START>(&err));
+  OCL_CHECK(err, err = q.enqueueTask(krnl_global_bandwidth, &host_2_device_Wait, &krnl_Done));
+  krnl_Wait.push_back(krnl_Done);
+
+  /* Migrate the buffer Data from Device */
+  OCL_CHECK(err, err = krnl_Done.wait());
+  q.enqueueMigrateMemObjects({*buffer[1]}, CL_MIGRATE_MEM_OBJECT_HOST,&krnl_Wait,&device_2_host_Done);
+
+  end = OCL_CHECK(err, krnl_Done.getProfilingInfo<CL_PROFILING_COMMAND_END>(&err));
+  start = OCL_CHECK(err, krnl_Done.getProfilingInfo<CL_PROFILING_COMMAND_START>(&err));
   nsduration = end - start;
 
-  /* Copy results back from OpenCL buffer */
-  unsigned char *map_output_buffer0;
-  OCL_CHECK(err, map_output_buffer0 = (unsigned char *)q.enqueueMapBuffer( *(buffer[1]), CL_FALSE, CL_MAP_READ, 0, globalbuffersize, NULL, NULL, &err));
   OCL_CHECK(err, err = q.finish());
 
   std::cout << "Kernel Duration..." << nsduration << " ns" << std::endl;
