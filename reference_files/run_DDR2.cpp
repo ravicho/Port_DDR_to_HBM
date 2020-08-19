@@ -120,27 +120,26 @@ int main(int argc, char **argv) {
 
 //   ---------------------------------------------------------------------------------------------
 
-  unsigned char numIter = 1; 
+  unsigned char numIter = 2; 
   size_t globalbuffersize = 1024 * 1024 * 256; /* 256 MB */
   size_t totalbuffersize = numIter*globalbuffersize; /* 256 MB */
 
   /* Reducing the data size for emulation mode */
   char *xcl_mode = getenv("XCL_EMULATION_MODE");
   if (xcl_mode != NULL) {
-    totalbuffersize = 1024; /* 1MB */
+    totalbuffersize = numIter*1024; /* 1MB */
     //totalbuffersize = numIter*4*4; /* 1MB */
   }
 
   /* Input buffer */
-  unsigned char *input_host = ((unsigned char *)malloc(totalbuffersize));
+  uint8_t *input_host = ((uint8_t *)malloc(totalbuffersize));
   if (input_host == NULL) {
-    printf("Error: Failed to allocate host side copy of OpenCL source "
-           "buffer of size %zu\n",
-           totalbuffersize);
+    printf("Error: Failed to allocate host side copy of OpenCL source " "buffer of size %zu\n", totalbuffersize);
     return EXIT_FAILURE;
   }
 
   for (size_t i = 0; i < totalbuffersize; i++) {
+    //printf("i = %d\n", i);
     input_host[i] = i % 256;
   }
 
@@ -195,10 +194,10 @@ cl::Buffer *outputBuffer = new cl::Buffer[numIter];
   OCL_CHECK(err, outputBuffer[j] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, totalbuffersize/numIter, &map_output_buffer[j*totalbuffersize/numIter], &err));
 
   /* Set the kernel arguments */
-  cl_ulong num_blocks = totalbuffersize / 64;
+  cl_ulong num_blocks = totalbuffersize / 64;   // 64 Bytes
 
-  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(0, inputBuffer[0]));
-  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(1, outputBuffer[0]));
+  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(0, inputBuffer[j]));
+  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(1, outputBuffer[j]));
   OCL_CHECK(err, err = krnl_global_bandwidth.setArg(2, num_blocks));
 
   printf("Starting kernel to read/write %.0lf MB bytes from/to global " "memory... \n", dmbytes);
@@ -215,14 +214,14 @@ cl::Buffer *outputBuffer = new cl::Buffer[numIter];
   /* Migrate the buffer Data from Device */
   q.enqueueMigrateMemObjects({outputBuffer[j]}, CL_MIGRATE_MEM_OBJECT_HOST,&krnl_Wait,&device_2_host_Done);
   device_2_host_Wait.push_back(device_2_host_Done);
-  device_2_host_Wait[numIter].wait();
+  device_2_host_Wait[j].wait();
 
   //OCL_CHECK(err, err = device_2_host_Done.wait());
   
   }
-  for (size_t j = 0; j < numIter; j++) {
-   device_2_host_Wait[j].wait();
-  }
+  //for (size_t j = 0; j < numIter; j++) {
+   //device_2_host_Wait[j].wait();
+  //}
 //host_2_device_Wait.clear();
 //krnl_Wait.clear();
 //device_2_host_Wait.clear();
@@ -267,7 +266,7 @@ cl::Buffer *outputBuffer = new cl::Buffer[numIter];
   for (size_t i = 0; i < totalbuffersize; i++) {
     if (map_output_buffer[i] != input_host[i]) {
       printf("ERROR : kernel failed to copy entry %zu input %i output %i\n", i, input_host[i], map_output_buffer[i]);
-      //return EXIT_FAILURE;
+      return EXIT_FAILURE;
     }
     else {
       //printf("GOOD : kernel failed to copy entry %zu input %i output %i\n", i, input_host[i], map_output_buffer[i]);
