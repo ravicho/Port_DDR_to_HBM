@@ -80,6 +80,10 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define NDDR_BANKS 2
 #endif
 
+using namespace std;
+using namespace std::chrono;
+
+
 int main(int argc, char **argv) {
 
   if (argc != 2) {
@@ -116,34 +120,39 @@ int main(int argc, char **argv) {
 
 //   ---------------------------------------------------------------------------------------------
 
+  unsigned char numIter = 1; 
   size_t globalbuffersize = 1024 * 1024 * 256; /* 256 MB */
+  size_t totalbuffersize = numIter*globalbuffersize; /* 256 MB */
 
   /* Reducing the data size for emulation mode */
   char *xcl_mode = getenv("XCL_EMULATION_MODE");
   if (xcl_mode != NULL) {
-    globalbuffersize = 1024 * 1024; /* 1MB */
+    totalbuffersize = 1024; /* 1MB */
+    //totalbuffersize = numIter*4*4; /* 1MB */
   }
 
   /* Input buffer */
-  unsigned char *input_host = ((unsigned char *)malloc(globalbuffersize));
+  unsigned char *input_host = ((unsigned char *)malloc(totalbuffersize));
   if (input_host == NULL) {
     printf("Error: Failed to allocate host side copy of OpenCL source "
            "buffer of size %zu\n",
-           globalbuffersize);
+           totalbuffersize);
     return EXIT_FAILURE;
   }
 
-  for (size_t i = 0; i < globalbuffersize; i++) {
+  for (size_t i = 0; i < totalbuffersize; i++) {
     input_host[i] = i % 256;
   }
 
   short ddr_banks = NDDR_BANKS;
 
   /* prepare data to be written to the device */
-  unsigned char *map_input_buffer0 = (unsigned char*)aligned_alloc(4096, globalbuffersize*sizeof(unsigned char));
-  unsigned char *map_output_buffer0 = (unsigned char*)aligned_alloc(4096, globalbuffersize*sizeof(unsigned char));
-  for (size_t i = 0; i < globalbuffersize; i++) {
-    map_input_buffer0[i] = input_host[i];
+  std::vector<uint8_t, aligned_allocator<uint8_t>> map_input_buffer(totalbuffersize);
+  std::vector<uint8_t, aligned_allocator<uint8_t>> map_output_buffer(totalbuffersize);
+  //unsigned char *map_input_buffer0 = (unsigned char*)aligned_alloc(4096, globalbuffersize*sizeof(unsigned char));
+  //unsigned char *map_output_buffer = (unsigned char*)aligned_alloc(4096, globalbuffersize*sizeof(unsigned char));
+  for (size_t i = 0; i < totalbuffersize; i++) {
+    map_input_buffer[i] = input_host[i];
   }
 
   /* Index for the ddr pointer array: 4=4, 3=3, 2=2, 1=2 */
@@ -151,35 +160,52 @@ int main(int argc, char **argv) {
   if (ddr_banks == 1)
     num_buffers = ddr_banks + (ddr_banks % 2);
 
-  /* buffer[0] is input0
-   * buffer[1] is output0
+  /* inputBuffer[0] is input0
+   * outputBuffer[0] is output0
   */
-  cl::Buffer *buffer[num_buffers];
 
-  OCL_CHECK(err, buffer[0] = new cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, globalbuffersize, map_input_buffer0, &err));
-  OCL_CHECK(err, buffer[1] = new cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, globalbuffersize, map_output_buffer0, &err));
 
-  /* Set the kernel arguments */
-  cl_ulong num_blocks = globalbuffersize / 64;
+  //cl::Buffer *inputBuffer[num_buffers];
+  //cl::Buffer *outputBuffer[num_buffers];
+  unsigned long start, end, nsduration;
+  /* Profiling information */
+  double dnsduration = ((double)nsduration);
+  double dsduration = dnsduration / ((double)1000000000);
 
-  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(0, *(buffer[0])));
-  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(1, *(buffer[1])));
-  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(2, num_blocks));
-
-  double dbytes = globalbuffersize;
+  double dbytes = totalbuffersize;
   double dmbytes = dbytes / (((double)1024) * ((double)1024));
-  printf("Starting kernel to read/write %.0lf MB bytes from/to global " "memory... \n", dmbytes);
+  double bpersec = (dbytes / dsduration);
+  double gbpersec = bpersec / ((double)1024 * 1024 * 1024) * ddr_banks;
 
   // Create events for read,compute and write
-
   std::vector<cl::Event> host_2_device_Wait;
   std::vector<cl::Event> krnl_Wait;
-  std::vector<cl::Event> flagWait;
+  std::vector<cl::Event> device_2_host_Wait;
   cl::Event host_2_device_Done, krnl_Done, device_2_host_Done;
-  unsigned long start, end, nsduration;
+
+  chrono::high_resolution_clock::time_point t1, t2;
+  t1 = chrono::high_resolution_clock::now();
+
+cl::Buffer *inputBuffer = new cl::Buffer[numIter];
+cl::Buffer *outputBuffer = new cl::Buffer[numIter];
+
+  for (size_t j = 0; j < numIter; j++) {
+
+  OCL_CHECK(err, inputBuffer[j] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, totalbuffersize/numIter, &map_input_buffer[j*totalbuffersize/numIter], &err));
+  OCL_CHECK(err, outputBuffer[j] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, totalbuffersize/numIter, &map_output_buffer[j*totalbuffersize/numIter], &err));
+
+  /* Set the kernel arguments */
+  cl_ulong num_blocks = totalbuffersize / 64;
+
+  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(0, inputBuffer[0]));
+  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(1, outputBuffer[0]));
+  OCL_CHECK(err, err = krnl_global_bandwidth.setArg(2, num_blocks));
+
+  printf("Starting kernel to read/write %.0lf MB bytes from/to global " "memory... \n", dmbytes);
+
 
   /* Migrate the buffer Data to Device */
-  q.enqueueMigrateMemObjects({*(buffer[0])}, 0,NULL,&host_2_device_Done);
+  q.enqueueMigrateMemObjects({inputBuffer[j]}, 0,NULL,&host_2_device_Done);
   host_2_device_Wait.push_back(host_2_device_Done);
 
   /* Execute Kernel */
@@ -187,34 +213,69 @@ int main(int argc, char **argv) {
   krnl_Wait.push_back(krnl_Done);
 
   /* Migrate the buffer Data from Device */
-  OCL_CHECK(err, err = krnl_Done.wait());
-  q.enqueueMigrateMemObjects({*buffer[1]}, CL_MIGRATE_MEM_OBJECT_HOST,&krnl_Wait,&device_2_host_Done);
+  q.enqueueMigrateMemObjects({outputBuffer[j]}, CL_MIGRATE_MEM_OBJECT_HOST,&krnl_Wait,&device_2_host_Done);
+  device_2_host_Wait.push_back(device_2_host_Done);
+  device_2_host_Wait[numIter].wait();
 
+  //OCL_CHECK(err, err = device_2_host_Done.wait());
+  
+  }
+  for (size_t j = 0; j < numIter; j++) {
+   device_2_host_Wait[j].wait();
+  }
+//host_2_device_Wait.clear();
+//krnl_Wait.clear();
+//device_2_host_Wait.clear();
+
+  OCL_CHECK(err, err = q.finish());
+
+  t2 = chrono::high_resolution_clock::now();
+  chrono::duration<double> perf_all_sec  = chrono::duration_cast<duration<double>>(t2-t1);
+/*
   end = OCL_CHECK(err, krnl_Done.getProfilingInfo<CL_PROFILING_COMMAND_END>(&err));
   start = OCL_CHECK(err, krnl_Done.getProfilingInfo<CL_PROFILING_COMMAND_START>(&err));
   nsduration = end - start;
 
-  OCL_CHECK(err, err = q.finish());
 
   std::cout << "Kernel Duration..." << nsduration << " ns" << std::endl;
+*/
+
+
+  cl_ulong f1 = 0;
+  cl_ulong f2 = 0;
+  host_2_device_Wait.front().getProfilingInfo(CL_PROFILING_COMMAND_QUEUED, &f1);
+  device_2_host_Wait.back().getProfilingInfo(CL_PROFILING_COMMAND_END, &f2);
+  double perf_hw_ms = (f2 - f1)/1000000.0;
+
+
+  if (xcl::is_emulation()) {
+     if (xcl::is_hw_emulation()) {
+        printf(" Emulated FPGA accelerated version  | run 'vitis_analyzer xclbin.run_summary' for performance estimates");
+     } else {
+        printf(" Emulated FPGA accelerated version  | (performance not relevant in SW emulation)");
+     }
+  } else {
+        printf(" Executed FPGA accelerated version  | %10.4f ms   ( FPGA %.3f ms )", 1000*perf_all_sec.count(), perf_hw_ms);
+  }
+  printf("\n");
+
+
+
 
   /* Check the results of output0 */
-  for (size_t i = 0; i < globalbuffersize; i++) {
-    if (map_output_buffer0[i] != input_host[i]) {
-      printf("ERROR : kernel failed to copy entry %zu input %i output %i\n", i,
-             input_host[i], map_output_buffer0[i]);
-      return EXIT_FAILURE;
+  printf("size = %d\n",totalbuffersize);
+  for (size_t i = 0; i < totalbuffersize; i++) {
+    if (map_output_buffer[i] != input_host[i]) {
+      printf("ERROR : kernel failed to copy entry %zu input %i output %i\n", i, input_host[i], map_output_buffer[i]);
+      //return EXIT_FAILURE;
+    }
+    else {
+      //printf("GOOD : kernel failed to copy entry %zu input %i output %i\n", i, input_host[i], map_output_buffer[i]);
     }
   }
-  delete (buffer[0]);
-  delete (buffer[1]);
+  delete [] inputBuffer;
+  delete [] outputBuffer;
 
-  /* Profiling information */
-  double dnsduration = ((double)nsduration);
-  double dsduration = dnsduration / ((double)1000000000);
-
-  double bpersec = (dbytes / dsduration);
-  double gbpersec = bpersec / ((double)1024 * 1024 * 1024) * ddr_banks;
 
   printf("Kernel completed read/write %.0lf MB bytes from/to global memory.\n",
          dmbytes);
