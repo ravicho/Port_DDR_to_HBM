@@ -1,19 +1,20 @@
 CURRENT_DIR = $(PWD)
 TARGET := hw
 
-PLATFORM :=xilinx_u200_xdma_201830_2
+#PLATFORM :=xilinx_u200_xdma_201830_2
 #PLATFORM :=xilinx_u280-es1_xdma_201910_1
+PLATFORM :=xilinx_u280_xdma_201920_3
 
 SRCDIR := ./../reference_files
 MEMTYPE = DDR
 
 # Default Settings here ..
-HOST_SRC_CPP := $(SRCDIR)/kernel_global_bandwidth.cpp
+HOST_SRC_CPP := $(SRCDIR)/run_$(MEMTYPE)$(BANKS).cpp
 BUILDDIR := ./../build/$(MEMTYPE)/bank_$(BANKS)
 
 
 # Common Source Code for FPGA and Host
-HOST_SRC_FPGA := $(SRCDIR)/kernel.cpp
+HOST_SRC_FPGA := $(SRCDIR)/kernel_$(MEMTYPE).cpp
 HOST_SRC_CPP += $(SRCDIR)/xcl2.cpp
 
 # SoC variables
