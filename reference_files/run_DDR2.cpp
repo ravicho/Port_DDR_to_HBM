@@ -96,7 +96,6 @@ int main(int argc, char **argv) {
   cl_int err;
 
   // Boilerplate code to load the FPGA binary, create the kernel and command queue
-  //std::vector<cl::Device> devices = xcl::get_xil_devices();
 
   auto devices = xcl::get_xil_devices();
   cl::Device device = devices[0];
@@ -111,7 +110,6 @@ int main(int argc, char **argv) {
 
   std::string run_type = xcl::is_emulation()?(xcl::is_hw_emulation()?"hw_emu":"sw_emu"):"hw";
   std::string binary_file = kernel_name + "_" + run_type + ".xclbin";
-  //cl::Program::Binaries bins = xcl::import_binary_file(binary_file);
 
   cl::Program::Binaries bins {{ fileBuf.data(), fileBuf.size() } };
   cl::Program program(context, devices, bins);
@@ -120,8 +118,8 @@ int main(int argc, char **argv) {
 
 //   ---------------------------------------------------------------------------------------------
 
-  size_t numIter = 5; 
-  size_t globalbuffersize = 4*4*1024*1024*256 ; /* 256 MB */
+  size_t numIter = 4; 
+  size_t globalbuffersize = 4*4*4*64*1024*256 ; /* 256 MB */
   size_t totalbuffersize = numIter*globalbuffersize; /* 256 MB */
 
   /* Reducing the data size for emulation mode */
@@ -142,25 +140,17 @@ int main(int argc, char **argv) {
     input_host[i] = i % 256;
   }
 
-  short ddr_banks = NDDR_BANKS;
+  //short ddr_banks = NDDR_BANKS;
 
   /* prepare data to be written to the device */
   std::vector<uint8_t, aligned_allocator<uint8_t>> map_input_buffer(totalbuffersize);
   std::vector<uint8_t, aligned_allocator<uint8_t>> map_output_buffer(totalbuffersize);
-  //unsigned char *map_input_buffer0 = (unsigned char*)aligned_alloc(4096, globalbuffersize*sizeof(unsigned char));
-  //unsigned char *map_output_buffer = (unsigned char*)aligned_alloc(4096, globalbuffersize*sizeof(unsigned char));
   for (size_t i = 0; i < totalbuffersize; i++) {
     map_input_buffer[i] = input_host[i];
   }
 
-  /* Index for the ddr pointer array: 4=4, 3=3, 2=2, 1=2 */
-  //char num_buffers = ddr_banks;
-  //if (ddr_banks == 1)
-    //num_buffers = ddr_banks + (ddr_banks % 2);
-
   double dbytes = totalbuffersize;
   double dmbytes = dbytes / (((double)1024) * ((double)1024));
-  //double gbpersec = bpersec / ((double)1024 * 1024 * 1024) * ddr_banks;
 
   // Create events for read,compute and write
   std::vector<cl::Event> host_2_device_Wait;
@@ -177,7 +167,7 @@ int main(int argc, char **argv) {
   printf("Total Data for read/write %.0lf MB bytes from/to global memory... split into %zu chunks \n", dmbytes, numIter);
 
   for (size_t j = 0; j < numIter; j++) {
-  printf("Enqueuing kernel to read/write %.0lf kB bytes from/to global " "memory... \n", (totalbuffersize)/(((double)1024)*numIter));
+  printf("Enqueuing kernel to read/write %zu MB bytes from/to global " "memory... \n", (totalbuffersize)/(numIter));
 
   OCL_CHECK(err, inputBuffer[j] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, totalbuffersize/numIter, &map_input_buffer[j*totalbuffersize/numIter], &err));
   OCL_CHECK(err, outputBuffer[j] = cl::Buffer(context, CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, totalbuffersize/numIter, &map_output_buffer[j*totalbuffersize/numIter], &err));
@@ -202,8 +192,6 @@ int main(int argc, char **argv) {
   device_2_host_Wait.push_back(device_2_host_Done);
   //device_2_host_Wait[j].wait();
 
-  //OCL_CHECK(err, err = device_2_host_Done.wait());
-  
   }
   //for (size_t j = 0; j < numIter; j++) {
    //device_2_host_Wait[j].wait();
