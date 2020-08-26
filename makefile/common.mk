@@ -1,6 +1,6 @@
 
-./$(BUILDDIR)/myKernel_$(TARGET).xo: $(HOST_SRC_FPGA)
-	v++ -c -g -t $(TARGET) -R 1 -k myKernel \
+./$(BUILDDIR)/vadd_$(TARGET).xo: $(HOST_SRC_FPGA)
+	v++ -c -g -t $(TARGET) -R 1 -k vadd \
 		--platform $(PLATFORM) \
                 --profile_kernel data:all:all:all \
                 --profile_kernel stall:all:all:all \
@@ -12,9 +12,9 @@
 		--config ./bandwidth.ini \
 		-DNDDR_BANKS=$(BANKS) \
 		$(HOST_SRC_FPGA) \
-		-o ./$(BUILDDIR)/myKernel_$(TARGET).xo
+		-o ./$(BUILDDIR)/vadd_$(TARGET).xo
 
-./$(BUILDDIR)/myKernel_$(TARGET).xclbin: ./$(BUILDDIR)/myKernel_$(TARGET).xo
+./$(BUILDDIR)/vadd_$(TARGET).xclbin: ./$(BUILDDIR)/vadd_$(TARGET).xo
 	v++ -l -g -t $(TARGET) -R 1 \
 		--platform $(PLATFORM) \
                 --profile_kernel data:all:all:all \
@@ -25,8 +25,8 @@
 		--config $(CURRENT_DIR)/$(MEMTYPE)_bank_$(BANKS).cfg \
 		-I$(SRCDIR) \
 		-DNDDR_BANKS=$(BANKS) \
-		./$(BUILDDIR)/myKernel_$(TARGET).xo \
-		-o ./$(BUILDDIR)/myKernel_$(TARGET).xclbin
+		./$(BUILDDIR)/vadd_$(TARGET).xo \
+		-o ./$(BUILDDIR)/vadd_$(TARGET).xclbin
 
 host: $(SRCDIR)/*.cpp 
 	mkdir -p $(BUILDDIR)
@@ -42,9 +42,9 @@ host: $(SRCDIR)/*.cpp
 emconfig.json:
 	cp $(SRCDIR)/emconfig.json .
 
-xclbin: myKernel_$(TARGET).xclbin
+xclbin: vadd_$(TARGET).xclbin
 
-xo: myKernel_$(TARGET).xo
+xo: vadd_$(TARGET).xo
 
 clean:
-	rm -rf temp_dir log_dir ../build report_dir *log host myKernel* *.csv *summary .run .Xil vitis* *jou xilinx*
+	rm -rf temp_dir log_dir ../build report_dir *log host vadd* *.csv *summary .run .Xil vitis* *jou xilinx*

@@ -36,7 +36,7 @@ compile_host:  host
 	@echo $(HOST_SRC_FPGA) is being used as source for Generating Kernel; \
 	mkdir -p $(BUILDDIR)
 
-build: compile_host ./$(BUILDDIR)/myKernel_$(TARGET).xclbin $(BUILDDIR)/$(EMCONFIG_FILE)
+build: compile_host ./$(BUILDDIR)/vadd_$(TARGET).xclbin $(BUILDDIR)/$(EMCONFIG_FILE)
 
 #####################################################################################################
 ###   For HW run, use 100,000 words for computation 
@@ -47,11 +47,11 @@ run:   build host
 	cp xrt.ini $(BUILDDIR)
 ifeq ($(TARGET), hw)
 	@echo "************  Use Command Line to run application!  ************"
-	cd $(BUILDDIR) && ./host myKernel_$(TARGET).xclbin;
+	cd $(BUILDDIR) && ./host vadd_$(TARGET).xclbin;
 else
 	@echo "Running $(TAGET) mode"; 
 	emconfigutil --nd 1  --platform $(PLATFORM) --od $(BUILDDIR)
-	cd $(BUILDDIR) && XCL_EMULATION_MODE=$(TARGET) ./host myKernel_$(TARGET).xclbin;
+	cd $(BUILDDIR) && XCL_EMULATION_MODE=$(TARGET) ./host vadd_$(TARGET).xclbin;
 endif
 
 run_ddr:
