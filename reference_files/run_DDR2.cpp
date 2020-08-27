@@ -31,13 +31,14 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 int main(int argc, char** argv)
 {
-    if (argc != 2) {
+    if (argc != 3) {
         std::cout << "Usage: " << argv[0] << " <XCLBIN File>" << std::endl;
 		return EXIT_FAILURE;
 	}
 
     std::string binaryFile = argv[1];
-    size_t total_data_size = sizeof(uint) * DATA_SIZE;
+    //size_t total_data_size = sizeof(uint) * DATA_SIZE;
+    long unsigned int total_data_size = atoi (argv[2]) ; 
     size_t vector_size_bytes = sizeof(int) * total_data_size;
     cl_int err;
     unsigned fileBufSize;
