@@ -1,9 +1,8 @@
 CURRENT_DIR = $(PWD)
 TARGET := hw
 
-PLATFORM :=xilinx_u200_xdma_201830_2
-#PLATFORM :=xilinx_u280-es1_xdma_201910_1
-#PLATFORM :=xilinx_u280_xdma_201920_3
+#PLATFORM :=xilinx_u200_xdma_201830_2
+PLATFORM :=xilinx_u280_xdma_201920_3
 
 SRCDIR := ./../reference_files
 MEMTYPE = DDR
@@ -55,9 +54,14 @@ else
 endif
 
 run_ddr:
-	make run TARGET=hw_emu DEVICE=xilinx_u200_xdma_201830_2 MEMTYPE=DDR BANKS=1;	
-	make run TARGET=hw_emu DEVICE=xilinx_u200_xdma_201830_2 MEMTYPE=DDR BANKS=2;	
-	make run TARGET=hw_emu DEVICE=xilinx_u200_xdma_201830_2 MEMTYPE=DDR BANKS=3;	
-	make run TARGET=hw_emu DEVICE=xilinx_u200_xdma_201830_2 MEMTYPE=DDR BANKS=4;	
-	make run TARGET=hw_emu DEVICE=xilinx_u200_xdma_201830_2 MEMTYPE=HBM BANKS=4;	
+	make run TARGET=hw_emu MEMTYPE=DDR BANKS=1;	
+	make run TARGET=hw_emu MEMTYPE=DDR BANKS=2;	
+	make run TARGET=hw_emu MEMTYPE=DDR BANKS=3;	
+	make run TARGET=hw_emu MEMTYPE=DDR BANKS=4;	
+	make run TARGET=hw_emu MEMTYPE=HBM BANKS=4;	
+
+ddr2:
+	make run TARGET=hw MEMTYPE=DDR BANKS=2
+hbm2:
+	make run TARGET=hw MEMTYPE=HBM BANKS=2
 
