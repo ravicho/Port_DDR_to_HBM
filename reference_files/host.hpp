@@ -12,7 +12,8 @@
               __FILE__,__LINE__, error);                            \
       exit(EXIT_FAILURE);                                           \
     }
-#define DATA_SIZE 4096
+//#define DATA_SIZE 256*1024*1024 // 256 MB
+#define DATA_SIZE 4*1024   // 4KB
 
 #include <vector>
 #include <unistd.h>

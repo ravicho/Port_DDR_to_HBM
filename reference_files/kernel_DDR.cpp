@@ -1,5 +1,5 @@
 /**********
-Copyright (c) 2020, Xilinx, Inc.
+Copyright (c) 2018, Xilinx, Inc.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
@@ -18,49 +18,78 @@ without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
-THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-ARE DISCLAIMED.
-IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
-INDIRECT,
-INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO,
-PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
-BUSINESS INTERRUPTION)
-HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
-THIS SOFTWARE,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **********/
-#include <ap_int.h>
-#include <iostream>
 
-auto constexpr DATAWIDTH = 512;
-using TYPE = ap_uint<DATAWIDTH>;
+/*******************************************************************************
+Description:
+    HLS pragmas can be used to optimize the design : improve throughput, reduce latency and 
+    device resource utilization of the resulting RTL code
+    This is vector addition example to demonstrate how HLS optimizations are used in kernel. 
+*******************************************************************************/
 
-// Tripcount identifiers
-auto constexpr c_min_size = (1024 * 1024) / 64;
-auto constexpr c_max_size = (1024 * 1024 * 1024) / 64;
 
+#define BUFFER_SIZE 1024
+
+/*
+    Vector Addition Kernel Implementation 
+    Arguments:
+        in1   (input)     --> Input Vector1
+        in2   (input)     --> Input Vector2
+        out   (output)    --> Output Vector
+        size  (input)     --> Size of Vector in Integer
+   */
 extern "C" {
-void myKernel(TYPE * input0, TYPE * output0,
-#if NDDR_BANKS == 3
-               TYPE * output1,
-#elif NDDR_BANKS > 3
-               TYPE * input1, TYPE * output1,
-#endif
-               int64_t num_blocks) {
+void vadd(
+        const unsigned int *in1, // Read-Only Vector 1
+        const unsigned int *in2, // Read-Only Vector 2
+        unsigned int *out,       // Output Result
+        int size                   // Size in integer
+        )
+{
 
-  for (int64_t blockindex = 0; blockindex < num_blocks; blockindex++) {
-#pragma HLS LOOP_TRIPCOUNT min = c_min_size max = c_max_size
-    TYPE temp0 = input0[blockindex];
-    output0[blockindex] = temp0;
-#if NDDR_BANKS == 3
-    output1[blockindex] = temp0;
-#elif NDDR_BANKS > 3
-    TYPE temp1 = input1[blockindex];
-    output1[blockindex] = temp1;
-#endif
-  }
+    unsigned int v1_buffer[BUFFER_SIZE];    // Local memory to store vector1
+    unsigned int v2_buffer[BUFFER_SIZE];    // Local memory to store vector2
+    unsigned int vout_buffer[BUFFER_SIZE];  // Local Memory to store result
+
+
+    //Per iteration of this loop perform BUFFER_SIZE vector addition
+    for(int i = 0; i < size;  i += BUFFER_SIZE)
+    {
+        int chunk_size = BUFFER_SIZE;
+        //boundary checks
+        if ((i + BUFFER_SIZE) > size) 
+            chunk_size = size - i;
+
+    // Transferring data in bursts hides the memory access latency as well as improves bandwidth utilization and efficiency of the memory controller.
+    // It is recommended to infer burst transfers from successive requests of data from consecutive address locations.
+    // A local memory vl_local is used for buffering the data from a single burst. The entire input vector is read in multiple bursts.
+    // The choice of LOCAL_MEM_SIZE depends on the specific applications and available on-chip memory on target FPGA. 
+        // burst read of v1 and v2 vector from global memory
+        read1: for (int j = 0 ; j < chunk_size ; j++){
+            v1_buffer[j] = in1[i + j];
+        }
+        read2: for (int j = 0 ; j < chunk_size ; j++){
+            v2_buffer[j] = in2[i + j];
+        }
+
+    // PIPELINE pragma reduces the initiation interval for loop by allowing the
+    // concurrent executions of operations
+        vadd: for (int j = 0 ; j < chunk_size; j ++){
+        #pragma HLS PIPELINE II=1
+            //perform vector addition
+            vout_buffer[j] = v1_buffer[j] + v2_buffer[j]; 
+        }
+        //burst write the result
+        write: for (int j = 0 ; j < chunk_size ; j++){
+            out[i + j] = vout_buffer[j];
+        }
+    }
 }
 }
