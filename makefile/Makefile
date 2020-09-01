@@ -46,22 +46,15 @@ run:   build host
 	cp xrt.ini $(BUILDDIR)
 ifeq ($(TARGET), hw)
 	@echo "************  Use Command Line to run application!  ************"
-	cd $(BUILDDIR) && ./host vadd_$(TARGET).xclbin;
+	cd $(BUILDDIR) && ./host vadd_$(TARGET).xclbin $SIZE;
 else
 	@echo "Running $(TAGET) mode"; 
 	emconfigutil --nd 1  --platform $(PLATFORM) --od $(BUILDDIR)
-	cd $(BUILDDIR) && XCL_EMULATION_MODE=$(TARGET) ./host vadd_$(TARGET).xclbin;
+	cd $(BUILDDIR) && XCL_EMULATION_MODE=$(TARGET) ./host vadd_$(TARGET).xclbin 1;
 endif
 
-run_ddr:
-	make run TARGET=hw_emu MEMTYPE=DDR BANKS=1;	
-	make run TARGET=hw_emu MEMTYPE=DDR BANKS=2;	
-	make run TARGET=hw_emu MEMTYPE=DDR BANKS=3;	
-	make run TARGET=hw_emu MEMTYPE=DDR BANKS=4;	
-	make run TARGET=hw_emu MEMTYPE=HBM BANKS=4;	
-
 ddr2:
-	make run TARGET=hw MEMTYPE=DDR BANKS=2
+	make run TARGET=hw MEMTYPE=DDR BANKS=2 SIZE=100
 hbm2:
-	make run TARGET=hw MEMTYPE=HBM BANKS=2
+	make run TARGET=hw MEMTYPE=HBM BANKS=2 SIZE=100
 
