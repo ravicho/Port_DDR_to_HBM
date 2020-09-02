@@ -38,8 +38,9 @@ int main(int argc, char** argv)
 
     std::string binaryFile = argv[1];
     //size_t total_data_size = sizeof(uint) * DATA_SIZE;
-    long unsigned int total_data_size = atoi (argv[2]) ; 
-    size_t vector_size_bytes = sizeof(int) * total_data_size;
+    long unsigned int input_data_size = atoi (argv[2]);
+    long unsigned int total_data_size = input_data_size * 4096 ;
+    size_t vector_size_bytes = total_data_size/sizeof(int);
     cl_int err;
     unsigned fileBufSize;
     size_t numIter = 4; 
@@ -101,9 +102,9 @@ int main(int argc, char** argv)
 // -------------------------------------------------------------
     OCL_CHECK(err, cl::Kernel krnl_vector_add(program,"vadd", &err));
 
-  cl::Buffer *buffer_in1 = new cl::Buffer[numIter];
-  cl::Buffer *buffer_in2 = new cl::Buffer[numIter];
-  cl::Buffer *buffer_output = new cl::Buffer[numIter];
+  cl::Buffer buffer_in1[numIter];
+  cl::Buffer buffer_in2[numIter];
+  cl::Buffer buffer_output[numIter];
 
   // Create events for read,compute and write
   std::vector<cl::Event> host_2_device_Wait;
@@ -135,16 +136,19 @@ for (size_t j = 0; j < numIter; j++) {
 // .......................................................	
     //OCL_CHECK(err, cl::Buffer buffer_in1   (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, vector_size_bytes, source_in1.data(), &err));
     OCL_CHECK(err, buffer_in1[j] = cl::Buffer(context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, vector_size_bytes/numIter, &source_in1[j*total_data_size/numIter], &err));
+printf("Chkk 1\n");
 // .......................................................
 // Allocate Global Memory for source_in2
 // .......................................................
     //OCL_CHECK(err, cl::Buffer buffer_in2   (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, vector_size_bytes, source_in2.data(), &err));
     OCL_CHECK(err, buffer_in2[j] = cl::Buffer(context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, vector_size_bytes/numIter, &source_in2[j*total_data_size/numIter], &err));
+printf("Chkk 2\n");
 // .......................................................
 // Allocate Global Memory for sourcce_hw_results
 // .......................................................
     //OCL_CHECK(err, cl::Buffer buffer_output(context,CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, vector_size_bytes, source_hw_results.data(), &err));
     OCL_CHECK(err, buffer_output[j] = cl::Buffer(context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, vector_size_bytes/numIter, &source_hw_results[j*total_data_size/numIter], &err));
+printf("Chkk 3\n");
 
 // ============================================================================
 // Step 2: Set Kernel Arguments and Run the Application
@@ -161,6 +165,8 @@ for (size_t j = 0; j < numIter; j++) {
 //         o) Copy Results from Global Memory, device to Host
 // ============================================================================	
     int size = total_data_size;
+
+
     OCL_CHECK(err, err = krnl_vector_add.setArg(0, buffer_in1[j]));
     OCL_CHECK(err, err = krnl_vector_add.setArg(1, buffer_in2[j]));
     OCL_CHECK(err, err = krnl_vector_add.setArg(2, buffer_output[j]));
