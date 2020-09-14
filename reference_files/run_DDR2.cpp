@@ -40,10 +40,10 @@ int main(int argc, char** argv)
     //size_t total_data_size = sizeof(uint) * DATA_SIZE;
     long unsigned int input_data_size = atoi (argv[2]);
     long unsigned int total_data_size = input_data_size * 4096 ;
-    size_t vector_size_bytes = total_data_size/sizeof(int);
+    size_t vector_size_bytes = sizeof(int) * total_data_size;
     cl_int err;
     unsigned fileBufSize;
-    size_t numIter = 4; 
+    size_t numIter = 2; 
 
     /* Reducing the data size for emulation mode */
     char *xcl_mode = getenv("XCL_EMULATION_MODE");
@@ -117,74 +117,24 @@ printf("\n Total Data of %lf kB bytes Written to global memory... split into chu
 
 for (size_t j = 0; j < numIter; j++) {
 
-// ================================================================
-// Step 2: Setup Buffers and run Kernels
-// ================================================================
-//   o) Allocate Memory to store the results 
-//   o) Create Buffers in Global Memory to store data
-// ================================================================
-
-// ------------------------------------------------------------------
-// Step 2: Create Buffers in Global Memory to store data
-//             o) buffer_in1 - stores source_in1
-//             o) buffer_in2 - stores source_in2
-//             o) buffer_ouput - stores Results
-// ------------------------------------------------------------------	
-
-// .......................................................
-// Allocate Global Memory for source_in1
-// .......................................................	
-    //OCL_CHECK(err, cl::Buffer buffer_in1   (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, vector_size_bytes, source_in1.data(), &err));
     OCL_CHECK(err, buffer_in1[j] = cl::Buffer(context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, vector_size_bytes/numIter, &source_in1[j*total_data_size/numIter], &err));
 printf("Chkk 1\n");
-// .......................................................
-// Allocate Global Memory for source_in2
-// .......................................................
-    //OCL_CHECK(err, cl::Buffer buffer_in2   (context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, vector_size_bytes, source_in2.data(), &err));
     OCL_CHECK(err, buffer_in2[j] = cl::Buffer(context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, vector_size_bytes/numIter, &source_in2[j*total_data_size/numIter], &err));
 printf("Chkk 2\n");
-// .......................................................
-// Allocate Global Memory for sourcce_hw_results
-// .......................................................
-    //OCL_CHECK(err, cl::Buffer buffer_output(context,CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, vector_size_bytes, source_hw_results.data(), &err));
-    OCL_CHECK(err, buffer_output[j] = cl::Buffer(context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, vector_size_bytes/numIter, &source_hw_results[j*total_data_size/numIter], &err));
+    OCL_CHECK(err, buffer_output[j] = cl::Buffer(context,CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, vector_size_bytes/numIter, &source_hw_results[j*total_data_size/numIter], &err));
 printf("Chkk 3\n");
 
-// ============================================================================
-// Step 2: Set Kernel Arguments and Run the Application
-//         o) Set Kernel Arguments
-//              ----------------------------------------------------
-//              Kernel Argument  Description
-//              ----------------------------------------------------
-//              in1   (input)     --> Input Vector1
-//              in2   (input)     --> Input Vector2
-//              out   (output)    --> Output Vector
-//              size  (input)     --> Size of Vector in Integer
-//         o) Copy Input Data from Host to Global Memory on the device
-//         o) Submit Kernels for Execution
-//         o) Copy Results from Global Memory, device to Host
-// ============================================================================	
-    int size = total_data_size;
+    int size = total_data_size/numIter;
 
-
-    OCL_CHECK(err, err = krnl_vector_add.setArg(0, buffer_in1[j]));
     OCL_CHECK(err, err = krnl_vector_add.setArg(1, buffer_in2[j]));
+    OCL_CHECK(err, err = krnl_vector_add.setArg(0, buffer_in1[j]));
     OCL_CHECK(err, err = krnl_vector_add.setArg(2, buffer_output[j]));
     OCL_CHECK(err, err = krnl_vector_add.setArg(3, size));
 
-// ------------------------------------------------------
-// Step 2: Copy Input data from Host to Global Memory on the device
-// ------------------------------------------------------
     OCL_CHECK(err, err = q.enqueueMigrateMemObjects({buffer_in1[j], buffer_in2[j]},0/* 0 means from host*/));	
 	
-// ----------------------------------------
-// Step 2: Submit Kernels for Execution
-// ----------------------------------------
     OCL_CHECK(err, err = q.enqueueTask(krnl_vector_add));
 	
-// --------------------------------------------------
-// Step 2: Copy Results from Device Global Memory to Host
-// --------------------------------------------------
     OCL_CHECK(err, err = q.enqueueMigrateMemObjects({buffer_output[j]},CL_MIGRATE_MEM_OBJECT_HOST));
  
 }
