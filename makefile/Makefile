@@ -46,11 +46,11 @@ run:   build host
 	cp xrt.ini $(BUILDDIR)
 ifeq ($(TARGET), hw)
 	@echo "************  Use Command Line to run application!  ************"
-	cd $(BUILDDIR) && ./host vadd_$(TARGET).xclbin $(SIZE);
+	cd $(BUILDDIR) && ./host vadd_$(TARGET).xclbin $(SIZE) $(ADDRNDM);
 else
 	@echo "Running $(TAGET) mode"; 
 	emconfigutil --nd 1  --platform $(PLATFORM) --od $(BUILDDIR)
-	cd $(BUILDDIR) && XCL_EMULATION_MODE=$(TARGET) ./host vadd_$(TARGET).xclbin 1;
+	cd $(BUILDDIR) && XCL_EMULATION_MODE=$(TARGET) ./host vadd_$(TARGET).xclbin $(SIZE) $(ADDRNDM);
 endif
 
 ddr2:
