@@ -37,6 +37,25 @@ Description:
 
 #define BUFFER_SIZE 1024
 
+#include <ap_int.h>
+
+
+unsigned int minRand(unsigned int seed, int load) {
+  static ap_uint<32> lfsr;
+
+  if (load == 1)
+    lfsr = seed;
+  bool b_32 = lfsr.get_bit(32 - 32);
+  bool b_22 = lfsr.get_bit(32 - 22);
+  bool b_2 = lfsr.get_bit(32 - 2);
+  bool b_1 = lfsr.get_bit(32 - 1);
+  bool new_bit = b_32 ^ b_22 ^ b_2 ^ b_1;
+  lfsr = lfsr >> 1;
+  lfsr.set_bit(31, new_bit);
+
+  return lfsr.to_uint();
+}
+
 /*
     Vector Addition Kernel Implementation 
     Arguments:
@@ -50,22 +69,30 @@ void vadd(
         const unsigned int *in1, // Read-Only Vector 1
         const unsigned int *in2, // Read-Only Vector 2
         unsigned int *out,       // Output Result
-        int size                   // Size in integer
+        int size,                // Size in integer
+	bool addRandom           // Address Pattern is random
         )
 {
 
     unsigned int v1_buffer[BUFFER_SIZE];    // Local memory to store vector1
     unsigned int v2_buffer[BUFFER_SIZE];    // Local memory to store vector2
     unsigned int vout_buffer[BUFFER_SIZE];  // Local Memory to store result
+    unsigned int seed = 1;
+    int i, in_index;
 
+
+    minRand(16807, 1);
 
     //Per iteration of this loop perform BUFFER_SIZE vector addition
-    for(int i = 0; i < size;  i += BUFFER_SIZE)
+    for(i = 0; i < size;  i += BUFFER_SIZE)
     {
+	seed = minRand(31, 0);
+        in_index = addRandom ? (seed % size) : i;
+        //in_index = i;
         int chunk_size = BUFFER_SIZE;
         //boundary checks
-        if ((i + BUFFER_SIZE) > size) 
-            chunk_size = size - i;
+        if ((in_index + BUFFER_SIZE) > size) 
+            chunk_size = size - in_index;
 
     // Transferring data in bursts hides the memory access latency as well as improves bandwidth utilization and efficiency of the memory controller.
     // It is recommended to infer burst transfers from successive requests of data from consecutive address locations.
@@ -73,10 +100,10 @@ void vadd(
     // The choice of LOCAL_MEM_SIZE depends on the specific applications and available on-chip memory on target FPGA. 
         // burst read of v1 and v2 vector from global memory
         read1: for (int j = 0 ; j < chunk_size ; j++){
-            v1_buffer[j] = in1[i + j];
+            v1_buffer[j] = in1[in_index + j];
         }
         read2: for (int j = 0 ; j < chunk_size ; j++){
-            v2_buffer[j] = in2[i + j];
+            v2_buffer[j] = in2[in_index + j];
         }
 
     // PIPELINE pragma reduces the initiation interval for loop by allowing the
@@ -88,7 +115,7 @@ void vadd(
         }
         //burst write the result
         write: for (int j = 0 ; j < chunk_size ; j++){
-            out[i + j] = vout_buffer[j];
+            out[in_index + j] = vout_buffer[j];
         }
     }
 }

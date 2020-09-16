@@ -31,15 +31,17 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 int main(int argc, char** argv)
 {
-    if (argc != 3) {
+    if (argc != 4) {
         std::cout << "Usage: " << argv[0] << " <XCLBIN File>" << std::endl;
 		return EXIT_FAILURE;
 	}
 
-    std::string binaryFile = argv[1];
     //size_t total_data_size = sizeof(uint) * DATA_SIZE;
+    std::string binaryFile = argv[1];
     long unsigned int input_data_size = atoi (argv[2]);
-    long unsigned int total_data_size = input_data_size * 4096 ;
+    bool addRandom = atoi (argv[3]);
+
+    long unsigned int total_data_size = input_data_size ;
     size_t vector_size_bytes = sizeof(int) * total_data_size;
     cl_int err;
     unsigned fileBufSize;
@@ -112,17 +114,14 @@ int main(int argc, char** argv)
   std::vector<cl::Event> device_2_host_Wait;
   cl::Event host_2_device_Done, krnl_Done, device_2_host_Done;
 
-printf("Data_size = %zu\n", total_data_size);
+//printf("Data_size = %zu and Address Pattern is %d \n", total_data_size, addRandom);
 printf("\n Total Data of %lf kB bytes Written to global memory... split into chunks of %zu \n\n ", vector_size_bytes/((double)1024), numIter);
 
 for (size_t j = 0; j < numIter; j++) {
 
     OCL_CHECK(err, buffer_in1[j] = cl::Buffer(context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, vector_size_bytes/numIter, &source_in1[j*total_data_size/numIter], &err));
-printf("Chkk 1\n");
     OCL_CHECK(err, buffer_in2[j] = cl::Buffer(context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, vector_size_bytes/numIter, &source_in2[j*total_data_size/numIter], &err));
-printf("Chkk 2\n");
     OCL_CHECK(err, buffer_output[j] = cl::Buffer(context,CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, vector_size_bytes/numIter, &source_hw_results[j*total_data_size/numIter], &err));
-printf("Chkk 3\n");
 
     int size = total_data_size/numIter;
 
@@ -130,6 +129,7 @@ printf("Chkk 3\n");
     OCL_CHECK(err, err = krnl_vector_add.setArg(0, buffer_in1[j]));
     OCL_CHECK(err, err = krnl_vector_add.setArg(2, buffer_output[j]));
     OCL_CHECK(err, err = krnl_vector_add.setArg(3, size));
+    OCL_CHECK(err, err = krnl_vector_add.setArg(4, addRandom));
 
     OCL_CHECK(err, err = q.enqueueMigrateMemObjects({buffer_in1[j], buffer_in2[j]},0/* 0 means from host*/));	
 	
