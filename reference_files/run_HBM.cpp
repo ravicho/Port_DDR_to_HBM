@@ -43,6 +43,7 @@ int main(int argc, char** argv)
 
     long unsigned int total_data_size = input_data_size ;
     size_t vector_size_bytes = sizeof(int) * total_data_size;
+    unsigned int num_times = 64; 
     cl_int err;
     unsigned fileBufSize;
     size_t numIter = 2; 
@@ -129,7 +130,8 @@ for (size_t j = 0; j < numIter; j++) {
     OCL_CHECK(err, err = krnl_vector_add.setArg(0, buffer_in1[j]));
     OCL_CHECK(err, err = krnl_vector_add.setArg(2, buffer_output[j]));
     OCL_CHECK(err, err = krnl_vector_add.setArg(3, size));
-    OCL_CHECK(err, err = krnl_vector_add.setArg(4, addRandom));
+    OCL_CHECK(err, err = krnl_vector_add.setArg(4, num_times));
+    OCL_CHECK(err, err = krnl_vector_add.setArg(5, addRandom));
 
     OCL_CHECK(err, err = q.enqueueMigrateMemObjects({buffer_in1[j], buffer_in2[j]},0/* 0 means from host*/));	
 	
