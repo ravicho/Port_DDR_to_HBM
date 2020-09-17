@@ -70,6 +70,7 @@ void vadd(
         const unsigned int *in2, // Read-Only Vector 2
         unsigned int *out,       // Output Result
         int size,                // Size in integer
+	const unsigned int num_times, // Running the same kernel operations num_times
 	bool addRandom           // Address Pattern is random
         )
 {
@@ -77,14 +78,18 @@ void vadd(
     unsigned int v1_buffer[BUFFER_SIZE];    // Local memory to store vector1
     unsigned int v2_buffer[BUFFER_SIZE];    // Local memory to store vector2
     unsigned int vout_buffer[BUFFER_SIZE];  // Local Memory to store result
+    unsigned int seed = 1;
     int i, in_index;
 
+
     minRand(16807, 1);
+  for (int count = 0; count < num_times; count++) {
 
     //Per iteration of this loop perform BUFFER_SIZE vector addition
     for(i = 0; i < size;  i += BUFFER_SIZE)
     {
-        in_index = addRandom ? 1 : i;
+	seed = minRand(31, 0);
+        in_index = addRandom ? (seed % size) : i;
         //in_index = i;
         int chunk_size = BUFFER_SIZE;
         //boundary checks
@@ -115,5 +120,6 @@ void vadd(
             out[in_index + j] = vout_buffer[j];
         }
     }
+  }
 }
 }
