@@ -8,12 +8,12 @@ SRCDIR := ./../reference_files
 MEMTYPE = DDR
 
 # Default Settings here ..
-HOST_SRC_CPP := $(SRCDIR)/run_$(MEMTYPE)$(BANKS).cpp
-BUILDDIR := ./../build/$(MEMTYPE)/bank_$(BANKS)
+HOST_SRC_CPP := $(SRCDIR)/run_$(MEMTYPE).cpp
+BUILDDIR := ./../build/$(MEMTYPE)
 
 
 # Common Source Code for FPGA and Host
-HOST_SRC_FPGA := $(SRCDIR)/kernel_$(MEMTYPE).cpp
+HOST_SRC_FPGA := $(SRCDIR)/kernel.cpp
 HOST_SRC_CPP += $(SRCDIR)/xcl2.cpp
 
 # SoC variables
@@ -54,7 +54,7 @@ else
 endif
 
 ddr2:
-	make run TARGET=hw MEMTYPE=DDR BANKS=2 SIZE=100
+	make run TARGET=hw MEMTYPE=DDR SIZE=4096 ADDRNDM=1 NUM_TIMES=6400
 hbm2:
-	make run TARGET=hw MEMTYPE=HBM BANKS=2 SIZE=100
+	make run TARGET=hw MEMTYPE=HBM SIZE=4096 ADDRNDM=1 NUM_TIMES=6400
 
