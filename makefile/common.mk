@@ -22,7 +22,7 @@
 		--temp_dir ./$(BUILDDIR)/temp_dir \
 		--report_dir ./$(BUILDDIR)/report_dir \
 		--log_dir ./$(BUILDDIR)/log_dir \
-		--config $(CURRENT_DIR)/$(MEMTYPE)_bank_$(BANKS).cfg \
+		--config $(CURRENT_DIR)/$(MEMTYPE).cfg \
 		-I$(SRCDIR) \
 		-DNDDR_BANKS=$(BANKS) \
 		./$(BUILDDIR)/vadd_$(TARGET).xo \
