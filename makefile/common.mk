@@ -14,6 +14,7 @@
 		$(HOST_SRC_FPGA) \
 		-o ./$(BUILDDIR)/vadd_$(TARGET).xo
 
+#./$(BUILDDIR)/vadd_$(TARGET).xclbin:
 ./$(BUILDDIR)/vadd_$(TARGET).xclbin: ./$(BUILDDIR)/vadd_$(TARGET).xo
 	v++ -l -g -t $(TARGET) -R 1 \
 		--platform $(PLATFORM) \
