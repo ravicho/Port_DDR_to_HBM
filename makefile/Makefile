@@ -3,6 +3,8 @@ TARGET := hw
 
 #PLATFORM :=xilinx_u200_xdma_201830_2
 PLATFORM :=xilinx_u280_xdma_201920_3
+PLATFORM :=xilinx_u50lv_gen3x4_xdma_base_2
+PLATFORM :=xilinx_u50lv_gen3x4_xdma_2_202010_1
 
 SRCDIR := ./../reference_files
 MEMTYPE = DDR
