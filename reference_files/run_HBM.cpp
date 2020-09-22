@@ -31,7 +31,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 int main(int argc, char** argv)
 {
-    if (argc != 4) {
+    if (argc != 5) {
         std::cout << "Usage: " << argv[0] << " <XCLBIN File>" << std::endl;
 		return EXIT_FAILURE;
 	}
@@ -40,10 +40,11 @@ int main(int argc, char** argv)
     std::string binaryFile = argv[1];
     long unsigned int input_data_size = atoi (argv[2]);
     bool addRandom = atoi (argv[3]);
+    unsigned int krnl_loop = atoi (argv[4]);
+    if (krnl_loop<64) krnl_loop=64; 
 
     long unsigned int total_data_size = input_data_size ;
     size_t vector_size_bytes = sizeof(int) * total_data_size;
-    unsigned int num_times = 64; 
     cl_int err;
     unsigned fileBufSize;
     size_t numIter = 2; 
@@ -116,7 +117,8 @@ int main(int argc, char** argv)
   cl::Event host_2_device_Done, krnl_Done, device_2_host_Done;
 
 //printf("Data_size = %zu and Address Pattern is %d \n", total_data_size, addRandom);
-printf("\n Total Data of %lf kB bytes Written to global memory... split into chunks of %zu \n\n ", vector_size_bytes/((double)1024), numIter);
+printf("\n Total Data of %lf kB bytes Written to global memory..split into chunks of %zu from host\n ", vector_size_bytes/((double)1024), numIter);
+printf("\n Kernel repeats iteself %d times \n\n", krnl_loop);
 
 for (size_t j = 0; j < numIter; j++) {
 
@@ -130,7 +132,7 @@ for (size_t j = 0; j < numIter; j++) {
     OCL_CHECK(err, err = krnl_vector_add.setArg(0, buffer_in1[j]));
     OCL_CHECK(err, err = krnl_vector_add.setArg(2, buffer_output[j]));
     OCL_CHECK(err, err = krnl_vector_add.setArg(3, size));
-    OCL_CHECK(err, err = krnl_vector_add.setArg(4, num_times));
+    OCL_CHECK(err, err = krnl_vector_add.setArg(4, krnl_loop));
     OCL_CHECK(err, err = krnl_vector_add.setArg(5, addRandom));
 
     OCL_CHECK(err, err = q.enqueueMigrateMemObjects({buffer_in1[j], buffer_in2[j]},0/* 0 means from host*/));	

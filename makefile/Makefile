@@ -48,15 +48,28 @@ run:   build host
 	cp xrt.ini $(BUILDDIR)
 ifeq ($(TARGET), hw)
 	@echo "************  Use Command Line to run application!  ************"
-	cd $(BUILDDIR) && ./host vadd_$(TARGET).xclbin $(SIZE) $(ADDRNDM);
+	cd $(BUILDDIR) && ./host vadd_$(TARGET).xclbin $(DSIZE) $(ADDRNDM) $(KRNL_LOOP);
 else
 	@echo "Running $(TAGET) mode"; 
 	emconfigutil --nd 1  --platform $(PLATFORM) --od $(BUILDDIR)
-	cd $(BUILDDIR) && XCL_EMULATION_MODE=$(TARGET) ./host vadd_$(TARGET).xclbin $(SIZE) $(ADDRNDM);
+	cd $(BUILDDIR) && XCL_EMULATION_MODE=$(TARGET) ./host vadd_$(TARGET).xclbin $(DSIZE) $(ADDRNDM) $(KRNL_LOOP);
 endif
 
-ddr2:
-	make run TARGET=hw MEMTYPE=DDR SIZE=4096 ADDRNDM=1 NUM_TIMES=6400
-hbm2:
-	make run TARGET=hw MEMTYPE=HBM SIZE=4096 ADDRNDM=1 NUM_TIMES=6400
+ddr_addRandom:
+	make run TARGET=hw MEMTYPE=DDR DSIZE=4096 ADDRNDM=1 KRNL_LOOP=64
+hbm_addRandom:
+	make run TARGET=hw MEMTYPE=HBM DSIZE=4096 ADDRNDM=1 KRNL_LOOP=64
+
+help:
+	@echo  " "
+	@echo  " "
+	@echo  " Makefile Usage:"
+	@echo  " "
+	@echo  "   Use the following command to Target application for sending DSize(kb) from Host to Device"
+	@echo  "   ADDRNDM determines address to be random(1) or sequential(0) for Kernel accessing MEMTYPE" 
+	@echo  "   KRNL_LOOP can be set to any num for repeating kernel execution # of times"
+	@echo  " > make <build/run>    TARGET=<sw_emu/hw_emu/hw> MEMTYPE=<DDR/HBM> DSIZE=<From Host> ADDRNDM=<0/1> KRNL_LOOP=<#>"
+	@echo  " "
+	@echo  " > make make run TARGET=hw MEMTYPE=HBM BANKS=2 DSIZE=4096 ADDRNDM=1 KRNL_LOOP=64"
+	@echo  " "
 
