@@ -1,5 +1,7 @@
 CURRENT_DIR = $(PWD)
 TARGET := hw
+MEMTYPE := DDR
+
 
 #PLATFORM :=xilinx_u200_xdma_201830_2
 PLATFORM :=xilinx_u280_xdma_201920_3
@@ -7,7 +9,13 @@ PLATFORM :=xilinx_u50lv_gen3x4_xdma_base_2
 PLATFORM :=xilinx_u50lv_gen3x4_xdma_2_202010_1
 
 SRCDIR := ./../reference_files
-MEMTYPE = DDR
+
+ifeq ($(MEMTYPE), DDR)
+PLATFORM :=xilinx_u200_xdma_201830_2
+else
+PLATFORM :=xilinx_u50lv_gen3x4_xdma_2_202010_1
+endif
+
 
 # Default Settings here ..
 HOST_SRC_CPP := $(SRCDIR)/run_$(MEMTYPE).cpp
@@ -70,6 +78,6 @@ help:
 	@echo  "   KRNL_LOOP can be set to any num for repeating kernel execution # of times"
 	@echo  " > make <build/run>    TARGET=<sw_emu/hw_emu/hw> MEMTYPE=<DDR/HBM> DSIZE=<From Host> ADDRNDM=<0/1> KRNL_LOOP=<#>"
 	@echo  " "
-	@echo  " > make make run TARGET=hw MEMTYPE=HBM BANKS=2 DSIZE=4096 ADDRNDM=1 KRNL_LOOP=64"
+	@echo  " > make run TARGET=hw MEMTYPE=HBM BANKS=2 DSIZE=4096 ADDRNDM=1 KRNL_LOOP=64"
 	@echo  " "
 
