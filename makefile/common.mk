@@ -43,9 +43,9 @@ host: $(SRCDIR)/*.cpp
 emconfig.json:
 	cp $(SRCDIR)/emconfig.json .
 
-xclbin: vadd_$(TARGET).xclbin
+xclbin: ./$(BUILDDIR)/vadd_$(TARGET).xclbin
 
-xo: vadd_$(TARGET).xo
+xo: ./$(BUILDDIR)/vadd_$(TARGET).xo
 
 clean:
 	rm -rf temp_dir log_dir ../build report_dir *log host vadd* *.csv *summary .run .Xil vitis* *jou xilinx*
