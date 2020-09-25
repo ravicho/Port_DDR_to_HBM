@@ -77,15 +77,12 @@ extern "C" {
 void vadd(
         const unsigned int *in1, // Read-Only Vector 1
         const unsigned int *in2, // Read-Only Vector 2
-        //ap_uint<512> *in1, // Read-Only Vector 1
-        //ap_uint<512> *in2, // Read-Only Vector 2
         unsigned int *out,       // Output Result
         int size,                // Size in integer
 	const unsigned int num_times, // Running the same kernel operations num_times
 	bool addRandom           // Address Pattern is random
         )
 {
-
 
     unsigned int v1_buffer[BUFFER_SIZE];    // Local memory to store vector1
     unsigned int v2_buffer[BUFFER_SIZE];    // Local memory to store vector2
@@ -94,9 +91,7 @@ void vadd(
     int i, in_index;
 
 
-  minRand(16807, 1);
-{
-  #pragma HLS DATAFLOW
+    minRand(16807, 1);
   for (int count = 0; count < num_times; count++) {
 #pragma HLS LOOP_TRIPCOUNT min = c_num max = c_num
 
@@ -138,6 +133,5 @@ void vadd(
         }
     }
   }
-}
 }
 }
