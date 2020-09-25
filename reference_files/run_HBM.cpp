@@ -43,8 +43,10 @@ int main(int argc, char** argv)
     unsigned int krnl_loop = atoi (argv[4]);
     if (krnl_loop<64) krnl_loop=64; 
 
+    //long unsigned int total_data_size = (input_data_size * 1024 * 1024); // Meg
     long unsigned int total_data_size = input_data_size ;
-    size_t vector_size_bytes = sizeof(int) * total_data_size;
+    long unsigned int vector_size_bytes = sizeof(int) * total_data_size;
+//printf("\n Total Data of %d bytes Written to global memory\n ", vector_size_bytes);
     cl_int err;
     unsigned fileBufSize;
     size_t numIter = 2; 
@@ -62,7 +64,7 @@ int main(int argc, char** argv)
     std::vector<int,aligned_allocator<int>> source_sw_results(total_data_size);
 
     // Create the test data 
-    for(size_t i = 0 ; i < total_data_size ; i++){
+    for(long unsigned int i = 0 ; i < total_data_size ; i++){
         source_in1[i] = rand() % total_data_size;
         source_in2[i] = rand() % total_data_size;
         source_sw_results[i] = source_in1[i] + source_in2[i];
@@ -117,8 +119,14 @@ int main(int argc, char** argv)
   cl::Event host_2_device_Done, krnl_Done, device_2_host_Done;
 
 //printf("Data_size = %zu and Address Pattern is %d \n", total_data_size, addRandom);
-printf("\n Total Data of %lf kB bytes Written to global memory..split into chunks of %zu from host\n ", vector_size_bytes/((double)1024), numIter);
+printf("\n Total Data of %lu bytes Written to global memory..split into chunks of %zu from host\n ", vector_size_bytes, numIter);
 printf("\n Kernel repeats iteself %d times \n\n", krnl_loop);
+
+double kernel_time_in_sec = 0, result = 0;
+std::chrono::duration<double> kernel_time(0);
+std::chrono::duration<double> kernel_time1(0);
+
+auto kernel_start = std::chrono::high_resolution_clock::now();
 
 for (size_t j = 0; j < numIter; j++) {
 
@@ -142,8 +150,13 @@ for (size_t j = 0; j < numIter; j++) {
     OCL_CHECK(err, err = q.enqueueMigrateMemObjects({buffer_output[j]},CL_MIGRATE_MEM_OBJECT_HOST));
  
 }
-
     q.finish();
+    auto kernel_end = std::chrono::high_resolution_clock::now();
+    kernel_time = std::chrono::duration<double>(kernel_end - kernel_start);
+    kernel_time_in_sec = kernel_time.count();
+
+std::cout << "kernel_time = " << kernel_time.count() << std::endl;
+
 	
 // OPENCL HOST CODE AREA END
 
@@ -164,7 +177,21 @@ for (size_t j = 0; j < numIter; j++) {
 // ============================================================================
     delete[] fileBuf;
 
-    std::cout << "TEST " << (match ? "PASSED" : "FAILED") << std::endl; 
-    return (match ? EXIT_SUCCESS : EXIT_FAILURE);
+  // Multiplying the actual data size by 4 because four buffers are being
+  // used.
+  result = vector_size_bytes * krnl_loop;
+  result /= 1000;               // to KB
+  result /= 1000;               // to MB
+  result /= 1000;               // to GB
+  std::cout << "kernel_time_in_sec = " << kernel_time_in_sec << std::endl;
+
+  result /= kernel_time_in_sec; // to GBps
+
+
+  std::cout << "Data Sent to Host = " <<  vector_size_bytes << " Bytes " << "Throughput = " << result << " GB/s" << std::endl;
+  
+
+  std::cout << "TEST " << (match ? "PASSED" : "FAILED") << std::endl; 
+  return (match ? EXIT_SUCCESS : EXIT_FAILURE);
 }
 
