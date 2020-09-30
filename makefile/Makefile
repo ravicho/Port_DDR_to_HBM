@@ -83,5 +83,8 @@ help:
 	@echo  " > make <build/run>    TARGET=<sw_emu/hw_emu/hw> MEMTYPE=<DDR/HBM> DSIZE=<From Host> ADDRNDM=<0/1> KRNL_LOOP=<#>"
 	@echo  " "
 	@echo  " > make run TARGET=hw MEMTYPE=HBM BANKS=2 DSIZE=4096 ADDRNDM=1 KRNL_LOOP=64"
-	@echo  " "
+	@echo  " > For using DDR with Sequential Address Access -- make ddr_addSeq "
+	@echo  " > For using DDR with Random     Address Access -- make ddr_addRandom"
+	@echo  " > For using HBM with Sequential Address Access -- make hbm_addSeq"
+	@echo  " > For using HBM with Random     Address Access -- make hbm_addRandom"
 
