@@ -122,10 +122,10 @@ int main(int argc, char** argv)
 
 //printf("Data_size = %zu and Address Pattern is %d \n", total_data_size, addRandom);
 printf("\n Total Data of %lu Kbytes Written to global memory..split into chunks of %zu from host\n ", vector_size_bytes/1000, numIter);
-printf("\n Kernel repeats iteself %d times \n\n", krnl_loop);
+printf("\n Kernel is invoked %zu time and repeats iteself %d times \n\n", numIter, krnl_loop);
 
 
-std::cout << "Data Sent from Host = " <<  vector_size_bytes/(numIter*1000) << " Bytes " << std::endl;
+std::cout << "Data Sent from Host duing each Kernel invocation = " <<  vector_size_bytes/(numIter*1000) << " KBytes " << std::endl;
 
 double kernel_time_in_sec = 0, result = 0;
 std::chrono::duration<double> kernel_time(0);
