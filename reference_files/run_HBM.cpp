@@ -46,7 +46,7 @@ int main(int argc, char** argv)
     //long unsigned int total_data_size = (input_data_size * 1024 * 1024); // Meg
     long unsigned int total_data_size = input_data_size ;
     long unsigned int vector_size_bytes = sizeof(int) * total_data_size;
-//printf("\n Total Data of %d bytes Written to global memory\n ", vector_size_bytes);
+//printf("\n Total Data of %d Mbytes Written to global memory\n ", vector_size_bytes/1000000);
     cl_int err;
     unsigned fileBufSize;
     size_t numIter = 2; 
@@ -81,6 +81,8 @@ int main(int argc, char** argv)
     std::vector<cl::Device> devices = get_devices("Xilinx");
     devices.resize(1);
     cl::Device device = devices[0];
+            std::cout << "DEVICE " << device.getInfo<CL_DEVICE_NAME>() << std::endl;
+
 
 // ------------------------------------------------------------------------------------
 // Step 1: Create Context
@@ -119,8 +121,11 @@ int main(int argc, char** argv)
   cl::Event host_2_device_Done, krnl_Done, device_2_host_Done;
 
 //printf("Data_size = %zu and Address Pattern is %d \n", total_data_size, addRandom);
-printf("\n Total Data of %lu bytes Written to global memory..split into chunks of %zu from host\n ", vector_size_bytes, numIter);
+printf("\n Total Data of %lu Kbytes Written to global memory..split into chunks of %zu from host\n ", vector_size_bytes/1000, numIter);
 printf("\n Kernel repeats iteself %d times \n\n", krnl_loop);
+
+
+std::cout << "Data Sent from Host = " <<  vector_size_bytes/(numIter*1000) << " Bytes " << std::endl;
 
 double kernel_time_in_sec = 0, result = 0;
 std::chrono::duration<double> kernel_time(0);
@@ -155,7 +160,7 @@ for (size_t j = 0; j < numIter; j++) {
     kernel_time = std::chrono::duration<double>(kernel_end - kernel_start);
     kernel_time_in_sec = kernel_time.count();
 
-std::cout << "kernel_time = " << kernel_time.count() << std::endl;
+//std::cout << "kernel_time = " << kernel_time.count() << std::endl;
 
 	
 // OPENCL HOST CODE AREA END
@@ -188,7 +193,7 @@ std::cout << "kernel_time = " << kernel_time.count() << std::endl;
   result /= kernel_time_in_sec; // to GBps
 
 
-  std::cout << "Data Sent to Host = " <<  vector_size_bytes << " Bytes " << "Throughput = " << result << " GB/s" << std::endl;
+  std::cout << "Throughput Achived = " << result << " GB/s" << std::endl;
   
 
   std::cout << "TEST " << (match ? "PASSED" : "FAILED") << std::endl; 
