@@ -36,17 +36,14 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 	}
 
-    //size_t total_data_size = sizeof(uint) * DATA_SIZE;
     std::string binaryFile = argv[1];
     long unsigned int input_data_size = atoi (argv[2]);
     bool addRandom = atoi (argv[3]);
     unsigned int krnl_loop = atoi (argv[4]);
-    if (krnl_loop<64) krnl_loop=64; 
+    if ((addRandom==1) && (krnl_loop<64)) krnl_loop=64; 
 
-    //long unsigned int total_data_size = (input_data_size * 1024 * 1024); // Meg
-    long unsigned int total_data_size = input_data_size ;
-    long unsigned int vector_size_bytes = sizeof(int) * total_data_size;
-//printf("\n Total Data of %d Mbytes Written to global memory\n ", vector_size_bytes/1000000);
+    long unsigned int total_data_size = input_data_size * 1024 *1024/4 ; // Convert to Meg
+    long unsigned int vector_size_bytes = total_data_size * sizeof(uint);
     cl_int err;
     unsigned fileBufSize;
     size_t numIter = 2; 

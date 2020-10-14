@@ -36,17 +36,14 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 	}
 
-    //size_t total_data_size = sizeof(uint) * DATA_SIZE;
     std::string binaryFile = argv[1];
     long unsigned int input_data_size = atoi (argv[2]);
     bool addRandom = atoi (argv[3]);
     unsigned int krnl_loop = atoi (argv[4]);
-    if (krnl_loop<64) krnl_loop=64; 
+    if ((addRandom==1) && (krnl_loop<64)) krnl_loop=64; 
 
-    //long unsigned int total_data_size = (input_data_size * 1024 * 1024); // Meg
-    long unsigned int total_data_size = input_data_size ;
-    long unsigned int vector_size_bytes = sizeof(int) * total_data_size;
-//printf("\n Total Data of %d Mbytes Written to global memory\n ", vector_size_bytes/1000000);
+    long unsigned int total_data_size = input_data_size * 1024 *1024/4 ; // Convert to Meg
+    long unsigned int vector_size_bytes = total_data_size * sizeof(uint);
     cl_int err;
     unsigned fileBufSize;
     size_t numIter = 2; 
@@ -122,10 +119,10 @@ int main(int argc, char** argv)
 
 //printf("Data_size = %zu and Address Pattern is %d \n", total_data_size, addRandom);
 printf("\n Total Data of %lu Kbytes Written to global memory..split into chunks of %zu from host\n ", vector_size_bytes/1000, numIter);
-printf("\n Kernel repeats iteself %d times \n\n", krnl_loop);
+printf("\n Kernel is invoked %zu time and repeats iteself %d times \n\n", numIter, krnl_loop);
 
 
-std::cout << "Data Sent from Host = " <<  vector_size_bytes/(numIter*1000) << " Bytes " << std::endl;
+std::cout << "Data Sent from Host duing each Kernel invocation = " <<  vector_size_bytes/(numIter*1000) << " KBytes " << std::endl;
 
 double kernel_time_in_sec = 0, result = 0;
 std::chrono::duration<double> kernel_time(0);

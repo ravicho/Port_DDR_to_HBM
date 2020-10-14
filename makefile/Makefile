@@ -1,6 +1,7 @@
 CURRENT_DIR = $(PWD)
 TARGET := hw
 MEMTYPE := DDR
+BANKS :=
 
 
 #PLATFORM :=xilinx_u200_xdma_201830_2
@@ -16,10 +17,16 @@ else
 PLATFORM :=xilinx_u50lv_gen3x4_xdma_2_202010_1
 endif
 
+ifeq ($(BANKS),2)
+BANKS = 2
+endif
+
+
+
 
 # Default Settings here ..
 HOST_SRC_CPP := $(SRCDIR)/run_$(MEMTYPE).cpp
-BUILDDIR := ./../build/$(MEMTYPE)
+BUILDDIR := ./../build/$(MEMTYPE)$(BANKS)
 
 
 # Common Source Code for FPGA and Host
@@ -53,7 +60,7 @@ build: compile_host ./$(BUILDDIR)/vadd_$(TARGET).xclbin $(BUILDDIR)/$(EMCONFIG_F
 #####################################################################################################
 
 ifeq ($(SOLUTION), 1)
-run:   
+run:  host 
 else
 run:   build host
 endif
@@ -68,13 +75,15 @@ else
 endif
 
 ddr_addSeq:
-	make run TARGET=hw MEMTYPE=DDR DSIZE=409600000 ADDRNDM=0 KRNL_LOOP=64 SOLUTION=1
+	make run TARGET=hw MEMTYPE=DDR DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 SOLUTION=1
+hbm_addSeq_2:
+	make run TARGET=hw MEMTYPE=HBM BANKS=2 DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 SOLUTION=1
 hbm_addSeq:
-	make run TARGET=hw MEMTYPE=HBM DSIZE=409600000 ADDRNDM=0 KRNL_LOOP=64 SOLUTION=1
+	make run TARGET=hw MEMTYPE=HBM DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 SOLUTION=1
 ddr_addRandom:
-	make run TARGET=hw MEMTYPE=DDR DSIZE=409600000 ADDRNDM=1 KRNL_LOOP=64 SOLUTION=1
+	make run TARGET=hw MEMTYPE=DDR DSIZE=256 ADDRNDM=1 KRNL_LOOP=64 SOLUTION=1
 hbm_addRandom:
-	make run TARGET=hw MEMTYPE=HBM DSIZE=409600000 ADDRNDM=1 KRNL_LOOP=64 SOLUTION=1
+	make run TARGET=hw MEMTYPE=HBM DSIZE=256 ADDRNDM=1 KRNL_LOOP=64 SOLUTION=1
 
 help:
 	@echo  " "
@@ -84,10 +93,12 @@ help:
 	@echo  "   Use the following command to Target application for sending DSize(kb) from Host to Device"
 	@echo  "   ADDRNDM determines address to be random(1) or sequential(0) for Kernel accessing MEMTYPE" 
 	@echo  "   KRNL_LOOP can be set to any num for repeating kernel execution # of times"
+	@echo  "   For HBM runs, BANKS=2 can be added for using only 2PC for inputs/outputs"
 	@echo  "   Add SOLUTION=1 for using existing xclbins "
-	@echo  " > make <build/run>    TARGET=<sw_emu/hw_emu/hw> MEMTYPE=<DDR/HBM> DSIZE=<From Host> ADDRNDM=<0/1> KRNL_LOOP=<#>"
 	@echo  " "
-	@echo  " > make run TARGET=hw MEMTYPE=HBM BANKS=2 DSIZE=4096 ADDRNDM=1 KRNL_LOOP=64"
+	@echo  " > make <build/run>    TARGET=<sw_emu/hw_emu/hw> MEMTYPE=<DDR/HBM> DSIZE=<From Host in MB> ADDRNDM=<0/1> KRNL_LOOP=<#>"
+	@echo  " "
+	@echo  " > make run TARGET=hw MEMTYPE=HBM BANKS=2 DSIZE=256 ADDRNDM=1 KRNL_LOOP=64"
 	@echo  " > For using DDR with Sequential Address Access -- make ddr_addSeq "
 	@echo  " > For using DDR with Random     Address Access -- make ddr_addRandom"
 	@echo  " > For using HBM with Sequential Address Access -- make hbm_addSeq"
