@@ -1,0 +1,2 @@
+performing high-level synthesis for kernel: vadd
+Log file: /scratch/ravic/Port_DDR_to_HBM/build/HBM2/temp_dir/vadd_hw/vadd/vitis_hls.log

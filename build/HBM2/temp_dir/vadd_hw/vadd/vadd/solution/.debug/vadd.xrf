@@ -1,0 +1,163 @@
+Begin Function 'vadd'
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp0_stage0)
+# ST_111
+local j <phi_109> <integer> <Phi> 'phi' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+add_ln109_1 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: j_reg_338[10:0] lv
+
+local add_ln109_1 <add_109> <integer> <Arithmetic> 'add' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+add_ln109_1 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: add_ln109_1_reg_909[10:0] lv
+
+local icmp_ln109_1 <icmp_109> <integer> <Comparator> 'icmp' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+icmp_ln109_1 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: icmp_ln109_1_reg_914[0:0] lv
+
+# ST_112
+local gmem0_addr_read <read_112> <integer> <> 'read' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:112>
+gmem0_addr_read /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:112
+reg: gmem0_addr_read_reg_918[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp1_stage0)
+# ST_185
+local j_1 <phi_114> <integer> <Phi> 'phi' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:114>
+add_ln114_1 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:114
+reg: j_1_reg_350[10:0] lv
+
+local add_ln114_1 <add_114> <integer> <Arithmetic> 'add' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:114>
+add_ln114_1 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:114
+reg: add_ln114_1_reg_929[10:0] lv
+
+local icmp_ln114 <icmp_114> <integer> <Comparator> 'icmp' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:114>
+icmp_ln114 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:114
+reg: icmp_ln114_reg_934[0:0] lv
+
+# ST_186
+local gmem1_addr_read <read_117> <integer> <> 'read' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:117>
+gmem1_addr_read /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:117
+reg: gmem1_addr_read_reg_938[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp2_stage0)
+# ST_189
+local j_2 <phi_122> <integer> <Phi> 'phi' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:122>
+add_ln122 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:122
+reg: j_2_reg_362[10:0] lv
+
+local icmp_ln122 <icmp_122> <integer> <Comparator> 'icmp' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:122>
+icmp_ln122 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:122
+reg: icmp_ln122_reg_948[0:0] lv
+
+local zext_ln122 <zext_122> <integer> <> 'zext' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:122>
+zext_ln122 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:122
+reg: zext_ln122_reg_952[63:0] lv
+
+# ST_190
+local add_ln126 <add_126> <integer> <Arithmetic> 'add' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:126>
+add_ln126 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:126
+reg: add_ln126_reg_967[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp3_stage0)
+# ST_194
+local j_3 <phi_129> <integer> <Phi> 'phi' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:129>
+add_ln129_1 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:129
+reg: j_3_reg_373[10:0] lv
+
+local icmp_ln129 <icmp_129> <integer> <Comparator> 'icmp' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:129>
+icmp_ln129 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:129
+reg: icmp_ln129_reg_983[0:0] lv
+
+# ST_195
+local vout_buffer_load <load_132> <integer> <ArrayAccess><ArrayLoad><MultiCycle> 'load' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:132>
+vout_buffer_load /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:132
+reg: vout_buffer_load_reg_992[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state1)
+# ST_1
+local xor_ln95 <xor_95> <integer> <Logic> 'xor' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:95>
+xor_ln95 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:95
+reg: xor_ln95_reg_838[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state114)
+# ST_114
+local gmem1_addr <getelementptr_114> <integer> <> 'getelementptr' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:114>
+gmem1_addr /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:114
+reg: gmem1_addr_reg_923[63:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state192)
+# ST_192
+local gmem2_addr <getelementptr_129> <integer> <> 'getelementptr' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:129>
+gmem2_addr /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:129
+reg: gmem2_addr_reg_972[63:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state2)
+# ST_2
+local count <> <integer> <Phi> 'phi' <>
+count /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:95
+reg: count_reg_304[31:0] lv
+
+local count_1 <add_95> <integer> <Arithmetic> 'add' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:95>
+count /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:95
+reg: count_1_reg_844[31:0] lv
+
+local tmp_3 <bitconcatenate_99> <integer> <> 'bitconcatenate' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:99>
+tmp_3 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:99
+reg: tmp_3_reg_852[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state3)
+# ST_3
+local i <> <integer> <Phi> 'phi' <>
+i /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:99
+reg: i_reg_315[31:0] lv
+
+local p_Result_s <> <integer> <> 'bitconcatenate' <>
+__Result__ /proj/xbuilds/SWIP/2020.2_0929_2003/installs/lin64/Vitis_HLS/2020.2/common/technology/autopilot/ap_int_base.h:669
+reg: p_Result_s_reg_860[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state39)
+# ST_39
+local in_index <> <integer> <Phi> 'phi' <>
+reg: in_index_reg_327[31:0] lv
+
+local chunk_size <select_106> <integer> <> 'select' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:106>
+chunk_size /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:106
+reg: chunk_size_reg_871[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state40)
+# ST_40
+local icmp_ln109 <icmp_109> <integer> <Comparator> 'icmp' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+icmp_ln109 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: icmp_ln109_reg_879[0:0] lv
+
+local sext_ln109 <sext_109> <integer> <> 'sext' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+sext_ln109 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: sext_ln109_reg_883[63:0] lv
+
+local gmem0_addr <getelementptr_109> <integer> <> 'getelementptr' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+gmem0_addr /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: gmem0_addr_reg_889[63:0] lv
+
+local sub_ln109 <sub_109> <integer> <Arithmetic> 'sub' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+sub_ln109 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: sub_ln109_reg_895[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state41)
+# ST_41
+local sub_ln109_1 <sub_109> <integer> <Arithmetic> 'sub' </scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+sub_ln109_1 /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: sub_ln109_1_reg_901[31:0] lv
+
+
+End Function 'vadd'
+

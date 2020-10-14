@@ -1,0 +1,218 @@
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2020.2 (64-bit)
+  **** SW Build 3017112 on Tue Sep 29 20:16:41 MDT 2020
+  **** IP Build 3016781 on Tue Sep 29 23:22:34 MDT 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source /proj/xbuilds/SWIP/2020.2_0929_2003/installs/lin64/Vitis_HLS/2020.2/scripts/vitis_hls/hls.tcl -notrace
+Sourcing Tcl script '/home/ravic/.Xilinx/HLS_init.tcl'
+WARNING: [Board 49-131] In interface "default_300mhz_clk1" preset_proc "default_300mhz_clk1_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk2" preset_proc "default_300mhz_clk2_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk3" preset_proc "default_300mhz_clk3_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "led_3bits" preset_proc "led_3bits_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "rs232_uart" preset_proc "rs232_uart_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "uart2_bank306" preset_proc "rs232_uart_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "dc_pl_gpio" preset_proc "dc_pl_gpio_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sysctlr_gpio" preset_proc "sysctlr_gpio_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sysclk0" preset_proc "sysclk0_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sysclk1" preset_proc "sysclk1_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sysclk3" preset_proc "sysclk3_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "rs232_uart" preset_proc "rs232_uart_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "push_button_4bits" preset_proc "PUSH_BUTTON_4Bits_Preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sys_diff_clock" preset_proc "sys_diff_clock_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sys_diff_clock" preset_proc "sys_diff_clock_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sys_diff_clock_233" preset_proc "sys_diff_clock_233_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "push_buttons" preset_proc "push_buttons_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "uart2_bank306" preset_proc "rs232_uart_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "dc_pl_gpio" preset_proc "dc_pl_gpio_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sysctlr_gpio" preset_proc "sysctlr_gpio_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk1" preset_proc "default_300mhz_clk1_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk2" preset_proc "default_300mhz_clk2_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk3" preset_proc "default_300mhz_clk3_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "led_3bits" preset_proc "led_3bits_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "rs232_uart" preset_proc "rs232_uart_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_sysclk_300" preset_proc "default_sysclk_300_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sysclk_125" preset_proc "sysclk_125_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "user_prog_clock" preset_proc "user_prog_clock_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_sysclk_300" preset_proc "default_sysclk_300_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sysclk_125" preset_proc "sysclk_125_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "user_prog_clock" preset_proc "user_prog_clock_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk1" preset_proc "default_300mhz_clk1_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk2" preset_proc "default_300mhz_clk2_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk3" preset_proc "default_300mhz_clk3_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "rs232_uart" preset_proc "rs232_uart_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk1" preset_proc "default_300mhz_clk1_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk2" preset_proc "default_300mhz_clk2_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk3" preset_proc "default_300mhz_clk3_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "led_3bits" preset_proc "led_3bits_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "rs232_uart" preset_proc "rs232_uart_preset" not found in preset file.
+INFO: [HLS 200-10] Running '/proj/xbuilds/SWIP/2020.2_0929_2003/installs/lin64/Vitis_HLS/2020.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'ravic' on host 'xcoswappshp385-2.xilinx.com' (Linux_x86_64 version 4.15.0-118-generic) on Tue Oct 13 17:59:18 MDT 2020
+INFO: [HLS 200-10] On os Ubuntu 18.04.4 LTS
+INFO: [HLS 200-10] In directory '/scratch/ravic/Port_DDR_to_HBM/build/HBM2/temp_dir/vadd_hw/vadd'
+Sourcing Tcl script 'vadd.tcl'
+INFO: [HLS 200-1510] Running: open_project vadd 
+INFO: [HLS 200-10] Creating and opening project '/scratch/ravic/Port_DDR_to_HBM/build/HBM2/temp_dir/vadd_hw/vadd/vadd'.
+INFO: [HLS 200-1510] Running: set_top vadd 
+INFO: [HLS 200-1510] Running: add_files /scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp -cflags  -g -D NDDR_BANKS=2 -I /scratch/ravic/Port_DDR_to_HBM/reference_files  
+INFO: [HLS 200-10] Adding design file '/scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp' to the project
+INFO: [HLS 200-1510] Running: open_solution -flow_target vitis solution 
+INFO: [HLS 200-10] Creating and opening solution '/scratch/ravic/Port_DDR_to_HBM/build/HBM2/temp_dir/vadd_hw/vadd/vadd/solution'.
+INFO: [HLS 200-1505] Using flow_target 'vitis'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/html_docs/xilinx2020_2/hls-guidance/200-1505.html
+INFO: [HLS 200-435] Setting 'config_flow -target' configuration: config_interface -m_axi_latency=64
+INFO: [HLS 200-435] Setting 'config_flow -target' configuration: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-435] Setting 'config_flow -target' configuration: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-435] Setting 'config_flow -target' configuration: config_interface -m_axi_offset=slave
+INFO: [HLS 200-435] Setting 'config_flow -target' configuration: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu50-fsvh2104-2LV-e 
+INFO: [HLS 200-10] Setting target device to 'xcu50-fsvh2104-2LV-e'
+INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+INFO: [HLS 200-1510] Running: config_rtl -kernel_profile 
+INFO: [HLS 200-1510] Running: config_dataflow -strict_mode warning 
+INFO: [HLS 200-1510] Running: config_debug -enable 
+INFO: [HLS 200-1510] Running: config_export -disable_deadlock_detection=true 
+INFO: [HLS 200-1510] Running: config_rtl -m_axi_conservative_mode=1 
+WARNING: [HLS 200-483] The 'config_rtl -m_axi_conservative_mode' command is deprecated and will be removed in a future release. Use 'config_interface -m_axi_conservative_mode' as its replacement.
+INFO: [HLS 200-1510] Running: config_interface -m_axi_addr64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_auto_max_ports=0 
+INFO: [HLS 200-1510] Running: config_export -format ip_catalog -ipname vadd 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_auto_max_ports=true 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished Csim/TCL-preprocess: CPU user time: 11.19 seconds. CPU system time: 1.14 seconds. Elapsed time: 12.61 seconds; current allocated memory: 434.699 MB.
+INFO: [HLS 200-10] Analyzing design file '/scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp' ... 
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 6.39 seconds. CPU system time: 0.42 seconds. Elapsed time: 6.87 seconds; current allocated memory: 436.377 MB.
+INFO: [HLS 200-777] Using interface defaults for 'Vitis' flow target.
+INFO: [HLS 214-178] Inlining function 'minRand(unsigned int, int)' into 'vadd' (/scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:85:0)
+INFO: [HLS 214-115] Multiple burst reads of variable length and bit width 32 in loop 'read1'(/scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109:16) has been inferred on port 'gmem0' (/scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:109:16)
+INFO: [HLS 214-115] Multiple burst reads of variable length and bit width 32 in loop 'read2'(/scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:114:16) has been inferred on port 'gmem1' (/scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:114:16)
+INFO: [HLS 214-115] Multiple burst writes of variable length and bit width 32 in loop 'write'(/scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:129:16) has been inferred on port 'gmem2' (/scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:129:16)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 5.59 seconds. CPU system time: 0.42 seconds. Elapsed time: 6.05 seconds; current allocated memory: 437.851 MB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 437.852 MB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.08 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.09 seconds; current allocated memory: 440.517 MB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.13 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.14 seconds; current allocated memory: 441.698 MB.
+INFO: [HLS 200-111] Finished Pre-synthesis: CPU user time: 0.52 seconds. CPU system time: 0 seconds. Elapsed time: 0.54 seconds; current allocated memory: 464.169 MB.
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_99_2' (/scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:91:9) in function 'vadd' more than one sub loop.
+Resolution: For help on HLS 200-960 see www.xilinx.com/html_docs/xilinx2020_2/hls-guidance/200-960.html
+WARNING: [HLS 200-960] Cannot flatten loop 'VITIS_LOOP_95_1' (/scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:95:29) in function 'vadd' the outer loop is not a perfect loop because either the parent loop or the sub loop has no computeable trip count.
+Resolution: For help on HLS 200-960 see www.xilinx.com/html_docs/xilinx2020_2/hls-guidance/200-960.html
+INFO: [HLS 200-472] Inferring partial write operation for 'v1_buffer' (/scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:112:15)
+INFO: [HLS 200-472] Inferring partial write operation for 'v2_buffer' (/scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:117:15)
+INFO: [HLS 200-472] Inferring partial write operation for 'vout_buffer' (/scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp:126:17)
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.36 seconds. CPU system time: 0 seconds. Elapsed time: 0.38 seconds; current allocated memory: 458.455 MB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'vadd' ...
+WARNING: [SYN 201-107] Renaming port name 'vadd/out' to 'vadd/out_r' to avoid the conflict with HDL keywords or other object names.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'vadd' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'read1'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'read1'
+INFO: [SCHED 204-61] Pipelining loop 'read2'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'read2'
+INFO: [SCHED 204-61] Pipelining loop 'vadd'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'vadd'
+INFO: [SCHED 204-61] Pipelining loop 'write'.
+INFO: [HLS 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'write'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished scheduling: CPU user time: 0.71 seconds. CPU system time: 0 seconds. Elapsed time: 0.8 seconds; current allocated memory: 459.532 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished binding: CPU user time: 1.1 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.15 seconds; current allocated memory: 461.027 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'vadd' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+WARNING: [RTGEN 206-101] Design contains AXI ports. Reset is fixed to synchronous and active low.
+INFO: [RTGEN 206-500] Setting interface mode on port 'vadd/gmem0' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'vadd/gmem1' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'vadd/gmem2' to 'm_axi'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'vadd/in1' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'vadd/in2' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'vadd/out_r' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'vadd/size' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'vadd/num_times' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'vadd/addRandom' to 's_axilite & ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'vadd' to 's_axilite & ap_ctrl_chain'.
+INFO: [RTGEN 206-100] Bundling port 'in1', 'in2', 'out_r', 'size', 'num_times', 'addRandom' and 'return' to AXI-Lite port control.
+INFO: [RTGEN 206-100] Generating core module 'urem_32ns_32ns_32_36_seq_1': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'vadd'.
+INFO: [HLS 200-111] Finished creating RTL model: CPU user time: 0.4 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.5 seconds; current allocated memory: 464.999 MB.
+INFO: [RTMG 210-282] Generating pipelined core: 'vadd_urem_32ns_32ns_32_36_seq_1_div'
+INFO: [RTMG 210-278] Implementing memory 'vadd_v1_buffer_ram (RAM)' using auto RAMs.
+INFO: [HLS 200-111] Finished generating all RTL models: CPU user time: 2.64 seconds. CPU system time: 0.05 seconds. Elapsed time: 2.73 seconds; current allocated memory: 478.113 MB.
+INFO: [VHDL 208-304] Generating VHDL RTL for vadd.
+INFO: [VLOG 209-307] Generating Verilog RTL for vadd.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 411.00 MHz
+INFO: [HLS 200-1510] Running: export_design 
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+
+****** Vivado v2020.2 (64-bit)
+  **** SW Build 3017112 on Tue Sep 29 20:16:41 MDT 2020
+  **** IP Build 3016781 on Tue Sep 29 23:22:34 MDT 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+Sourcing tcl script '/home/ravic/.Xilinx/Vivado/Vivado_init.tcl'
+54 Beta devices matching pattern found, 54 enabled.
+WARNING: [Board 49-131] In interface "default_300mhz_clk1" preset_proc "default_300mhz_clk1_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk2" preset_proc "default_300mhz_clk2_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk3" preset_proc "default_300mhz_clk3_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "led_3bits" preset_proc "led_3bits_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "rs232_uart" preset_proc "rs232_uart_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "uart2_bank306" preset_proc "rs232_uart_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "dc_pl_gpio" preset_proc "dc_pl_gpio_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sysctlr_gpio" preset_proc "sysctlr_gpio_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sysclk0" preset_proc "sysclk0_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sysclk1" preset_proc "sysclk1_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sysclk3" preset_proc "sysclk3_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "rs232_uart" preset_proc "rs232_uart_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "push_button_4bits" preset_proc "PUSH_BUTTON_4Bits_Preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sys_diff_clock" preset_proc "sys_diff_clock_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sys_diff_clock" preset_proc "sys_diff_clock_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sys_diff_clock_233" preset_proc "sys_diff_clock_233_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "push_buttons" preset_proc "push_buttons_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "uart2_bank306" preset_proc "rs232_uart_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "dc_pl_gpio" preset_proc "dc_pl_gpio_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sysctlr_gpio" preset_proc "sysctlr_gpio_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk1" preset_proc "default_300mhz_clk1_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk2" preset_proc "default_300mhz_clk2_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk3" preset_proc "default_300mhz_clk3_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "led_3bits" preset_proc "led_3bits_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "rs232_uart" preset_proc "rs232_uart_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_sysclk_300" preset_proc "default_sysclk_300_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sysclk_125" preset_proc "sysclk_125_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "user_prog_clock" preset_proc "user_prog_clock_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_sysclk_300" preset_proc "default_sysclk_300_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "sysclk_125" preset_proc "sysclk_125_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "user_prog_clock" preset_proc "user_prog_clock_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk1" preset_proc "default_300mhz_clk1_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk2" preset_proc "default_300mhz_clk2_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk3" preset_proc "default_300mhz_clk3_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "rs232_uart" preset_proc "rs232_uart_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk1" preset_proc "default_300mhz_clk1_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk2" preset_proc "default_300mhz_clk2_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "default_300mhz_clk3" preset_proc "default_300mhz_clk3_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "led_3bits" preset_proc "led_3bits_preset" not found in preset file.
+WARNING: [Board 49-131] In interface "rs232_uart" preset_proc "rs232_uart_preset" not found in preset file.
+enable_beta_device: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2450.566 ; gain = 14.152 ; free physical = 34413 ; free virtual = 59396
+0 Beta devices matching pattern found, 0 enabled.
+0 Beta devices matching pattern found, 0 enabled.
+0 Beta devices matching pattern found, 0 enabled.
+0 Beta devices matching pattern found, 0 enabled.
+0 Beta devices matching pattern found, 0 enabled.
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/proj/xbuilds/SWIP/2020.2_0929_2003/installs/lin64/Vivado/2020.2/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Tue Oct 13 18:00:05 2020...
+INFO: [HLS 200-802] Generated output file vadd/solution/impl/export.zip
+HLS completed successfully
+INFO: [HLS 200-112] Total CPU user time: 53.08 seconds. Total CPU system time: 3.85 seconds. Total elapsed time: 68.5 seconds; peak allocated memory: 478.113 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Tue Oct 13 18:00:15 2020...

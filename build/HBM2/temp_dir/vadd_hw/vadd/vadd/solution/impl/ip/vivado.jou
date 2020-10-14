@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3017112 on Tue Sep 29 20:16:41 MDT 2020
+# IP Build 3016781 on Tue Sep 29 23:22:34 MDT 2020
+# Start of session at: Tue Oct 13 17:59:44 2020
+# Process ID: 18164
+# Current directory: /scratch/ravic/Port_DDR_to_HBM/build/HBM2/temp_dir/vadd_hw/vadd/vadd/solution/impl/ip
+# Command line: vivado -notrace -mode batch -source run_ippack.tcl
+# Log file: /scratch/ravic/Port_DDR_to_HBM/build/HBM2/temp_dir/vadd_hw/vadd/vadd/solution/impl/ip/vivado.log
+# Journal file: /scratch/ravic/Port_DDR_to_HBM/build/HBM2/temp_dir/vadd_hw/vadd/vadd/solution/impl/ip/vivado.jou
+#-----------------------------------------------------------
+source run_ippack.tcl -notrace
