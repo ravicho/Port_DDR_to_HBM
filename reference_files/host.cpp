@@ -44,7 +44,6 @@ int main(int argc, char** argv)
 
     long unsigned int total_data_size = input_data_size * 1024 *1024/4 ; // Convert to Meg
     long unsigned int vector_size_bytes = total_data_size * sizeof(uint);
-    std::cout <<  "HHHH " << vector_size_bytes << std::endl;
     cl_int err;
     unsigned fileBufSize;
     size_t numIter = 2; 
