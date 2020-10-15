@@ -44,6 +44,7 @@ int main(int argc, char** argv)
 
     long unsigned int total_data_size = input_data_size * 1024 *1024/4 ; // Convert to Meg
     long unsigned int vector_size_bytes = total_data_size * sizeof(uint);
+    std::cout <<  "HHHH " << vector_size_bytes << std::endl;
     cl_int err;
     unsigned fileBufSize;
     size_t numIter = 2; 
@@ -51,7 +52,9 @@ int main(int argc, char** argv)
     /* Reducing the data size for emulation mode */
     char *xcl_mode = getenv("XCL_EMULATION_MODE");
     if (xcl_mode != NULL) {
-      //totalbuffersize = numIter*1024; /* 1MB */
+    	vector_size_bytes = 1024 * sizeof(uint);
+ 	addRandom=1;
+	krnl_loop=1;	
     }
 
     // Allocate Memory in Host Memory
@@ -118,11 +121,11 @@ int main(int argc, char** argv)
   cl::Event host_2_device_Done, krnl_Done, device_2_host_Done;
 
 //printf("Data_size = %zu and Address Pattern is %d \n", total_data_size, addRandom);
-printf("\n Total Data of %lu Kbytes Written to global memory..split into chunks of %zu from host\n ", vector_size_bytes/1000, numIter);
+printf("\n Total Data of %lu Mbytes Written to global memory..split into chunks of %zu from host\n ", vector_size_bytes/1024/1024, numIter);
 printf("\n Kernel is invoked %zu time and repeats iteself %d times \n\n", numIter, krnl_loop);
 
 
-std::cout << "Data Sent from Host duing each Kernel invocation = " <<  vector_size_bytes/(numIter*1000) << " KBytes " << std::endl;
+std::cout << "Data Sent from Host duing each Kernel invocation = " <<  vector_size_bytes/(numIter*1024) << " KBytes " << std::endl;
 
 double kernel_time_in_sec = 0, result = 0;
 std::chrono::duration<double> kernel_time(0);
@@ -182,9 +185,9 @@ for (size_t j = 0; j < numIter; j++) {
   // Multiplying the actual data size by 4 because four buffers are being
   // used.
   result = vector_size_bytes * krnl_loop;
-  result /= 1000;               // to KB
-  result /= 1000;               // to MB
-  result /= 1000;               // to GB
+  result /= 1024;               // to KB
+  result /= 1024;               // to MB
+  result /= 1024;               // to GB
   std::cout << "kernel_time_in_sec = " << kernel_time_in_sec << std::endl;
 
   result /= kernel_time_in_sec; // to GBps
