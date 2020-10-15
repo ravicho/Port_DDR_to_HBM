@@ -25,7 +25,7 @@ endif
 
 
 # Default Settings here ..
-HOST_SRC_CPP := $(SRCDIR)/run_$(MEMTYPE).cpp
+HOST_SRC_CPP := $(SRCDIR)/host.cpp
 BUILDDIR := ./../build/$(MEMTYPE)$(BANKS)
 
 
@@ -59,7 +59,7 @@ build: compile_host ./$(BUILDDIR)/vadd_$(TARGET).xclbin $(BUILDDIR)/$(EMCONFIG_F
 ###   For Emulation run, use 100 words for computation 
 #####################################################################################################
 
-ifeq ($(SOLUTION), 1)
+ifeq ($(BUILDXCLBIN), 0)
 run:  host 
 else
 run:   build host
@@ -69,21 +69,21 @@ ifeq ($(TARGET), hw)
 	@echo "************  Use Command Line to run application!  ************"
 	cd $(BUILDDIR) && ./host vadd_$(TARGET).xclbin $(DSIZE) $(ADDRNDM) $(KRNL_LOOP);
 else
-	@echo "Running $(TAGET) mode"; 
+	@echo "Running $(TARGET) mode"; 
 	emconfigutil --nd 1  --platform $(PLATFORM) --od $(BUILDDIR)
 	cd $(BUILDDIR) && XCL_EMULATION_MODE=$(TARGET) ./host vadd_$(TARGET).xclbin $(DSIZE) $(ADDRNDM) $(KRNL_LOOP);
 endif
 
 ddr_addSeq:
-	make run TARGET=hw MEMTYPE=DDR DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 SOLUTION=1
+	make run TARGET=hw MEMTYPE=DDR DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 BUILDXCLBIN=0
 hbm_addSeq_2:
-	make run TARGET=hw MEMTYPE=HBM BANKS=2 DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 SOLUTION=1
+	make run TARGET=hw MEMTYPE=HBM BANKS=2 DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 BUILDXCLBIN=0
 hbm_addSeq:
-	make run TARGET=hw MEMTYPE=HBM DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 SOLUTION=1
+	make run TARGET=hw MEMTYPE=HBM DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 BUILDXCLBIN=0
 ddr_addRandom:
-	make run TARGET=hw MEMTYPE=DDR DSIZE=256 ADDRNDM=1 KRNL_LOOP=64 SOLUTION=1
+	make run TARGET=hw MEMTYPE=DDR DSIZE=256 ADDRNDM=1 KRNL_LOOP=64 BUILDXCLBIN=0
 hbm_addRandom:
-	make run TARGET=hw MEMTYPE=HBM DSIZE=256 ADDRNDM=1 KRNL_LOOP=64 SOLUTION=1
+	make run TARGET=hw MEMTYPE=HBM DSIZE=256 ADDRNDM=1 KRNL_LOOP=64 BUILDXCLBIN=0
 
 help:
 	@echo  " "
@@ -94,7 +94,7 @@ help:
 	@echo  "   ADDRNDM determines address to be random(1) or sequential(0) for Kernel accessing MEMTYPE" 
 	@echo  "   KRNL_LOOP can be set to any num for repeating kernel execution # of times"
 	@echo  "   For HBM runs, BANKS=2 can be added for using only 2PC for inputs/outputs"
-	@echo  "   Add SOLUTION=1 for using existing xclbins "
+	@echo  "   Add BUILDXCLBIN=0 for using existing hw xclbins "
 	@echo  " "
 	@echo  " > make <build/run>    TARGET=<sw_emu/hw_emu/hw> MEMTYPE=<DDR/HBM> DSIZE=<From Host in MB> ADDRNDM=<0/1> KRNL_LOOP=<#>"
 	@echo  " "
