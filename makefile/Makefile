@@ -104,7 +104,7 @@ help:
 	@echo  " "
 	@echo  "   > For using DDR with Sequential Address Access -- make ddr_addSeq "
 	@echo  "   > For using DDR with Random     Address Access -- make ddr_addRandom"
-	@echo  "   > For using HBM with Sequential Address Access -- make hbm_addSeq"
 	@echo  "   > For using HBM with Sequential Address Access -- make hbm_addSeq_2 - This should error out as only 2 banks used and data xfer is > 512M"
-	@echo  "   > For using HBM with Random     Address Access -- make hbm_addRandom - This should PASS as kernel is not constraint to just 2 banks"
+	@echo  "   > For using HBM with Sequential Address Access -- make hbm_addSeq   - This should PASS as kernel is not constraint to just 2 banks"
+	@echo  "   > For using HBM with Random     Address Access -- make hbm_addRandom "
 
