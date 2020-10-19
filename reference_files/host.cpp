@@ -120,7 +120,7 @@ int main(int argc, char** argv)
   cl::Event host_2_device_Done, krnl_Done, device_2_host_Done;
 
 //printf("Data_size = %zu and Address Pattern is %d \n", total_data_size, addRandom);
-printf("\n Total Data of %lu Mbytes Written to global memory..split into chunks of %zu from host\n ", vector_size_bytes/1024/1024, numIter);
+printf("\n Total Data of %2.3f Mbytes Written to global memory..split into chunks of %zu from host\n ", (float) vector_size_bytes/1024/1024, numIter);
 printf("\n Kernel is invoked %zu time and repeats iteself %d times \n\n", numIter, krnl_loop);
 
 
