@@ -1,0 +1,251 @@
+<ENTRY>
+{
+ "thisFile": "/scratch/ravic/Port_DDR_to_HBM/build/HBM/vadd_hw.xo.compile_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Thu Sep 24 10:17:56 2020",
+ "timestampMillis": "1600964276491",
+ "buildStep": {
+  "cmdId": "00a71dad-da41-44d9-93f5-42ef47dff6cd",
+  "name": "v++",
+  "logFile": "/scratch/ravic/Port_DDR_to_HBM/build/HBM/temp_dir/vadd_hw/vadd_hw.steps.log",
+  "commandLine": "/proj/xbuilds/SWIP/2020.2_0923_2003/installs/lin64/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp vivado_param:project.writeIntermediateCheckpoints=1 --xp \"param:compiler.reportFailfast=pre_opt_design {__KERNEL_NAMES__} post_opt_design {__OCL_TOP__}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" -c -g -t hw -R 1 -k vadd --platform xilinx_u50lv_gen3x4_xdma_2_202010_1 --profile_kernel data:all:all:all --profile_kernel stall:all:all:all --save-temps --temp_dir ././../build/HBM/temp_dir --report_dir ././../build/HBM/report_dir --log_dir ././../build/HBM/log_dir -I./../reference_files --config ./bandwidth.ini -DNDDR_BANKS= ./../reference_files/kernel.cpp -o ././../build/HBM/vadd_hw.xo ",
+  "args": [
+   "-c",
+   "-g",
+   "-t",
+   "hw",
+   "-R",
+   "1",
+   "-k",
+   "vadd",
+   "--platform",
+   "xilinx_u50lv_gen3x4_xdma_2_202010_1",
+   "--profile_kernel",
+   "data:all:all:all",
+   "--profile_kernel",
+   "stall:all:all:all",
+   "--save-temps",
+   "--temp_dir",
+   "././../build/HBM/temp_dir",
+   "--report_dir",
+   "././../build/HBM/report_dir",
+   "--log_dir",
+   "././../build/HBM/log_dir",
+   "-I./../reference_files",
+   "--config",
+   "./bandwidth.ini",
+   "-DNDDR_BANKS=",
+   "./../reference_files/kernel.cpp",
+   "-o",
+   "././../build/HBM/vadd_hw.xo"
+  ],
+  "iniFiles": [
+   {
+    "path": "/scratch/ravic/Port_DDR_to_HBM/makefile/bandwidth.ini",
+    "content": "[advanced]\nprop=solution.hls_pre_tcl=hls_config.tcl \n"
+   }
+  ],
+  "cwd": "/scratch/ravic/Port_DDR_to_HBM/makefile"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Sep 24 10:17:56 2020",
+ "timestampMillis": "1600964276492",
+ "status": {
+  "cmdId": "00a71dad-da41-44d9-93f5-42ef47dff6cd",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Thu Sep 24 10:18:04 2020",
+ "timestampMillis": "1600964284187",
+ "buildSummary": {
+  "hardwarePlatform": "xilinx_u50lv_gen3x4_xdma_2_202010_1.xpfm",
+  "hardwareDsa": "hw.xsa",
+  "platformDirectory": "/proj/xbuilds/2020.1_daily_latest/internal_platforms/xilinx_u50lv_gen3x4_xdma_2_202010_1",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_COMPILE",
+  "target": "TT_HW",
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "vadd",
+     "file": "/scratch/ravic/Port_DDR_to_HBM/build/HBM/vadd_hw.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/scratch/ravic/Port_DDR_to_HBM/reference_files/kernel.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": ""
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Sep 24 10:18:04 2020",
+ "timestampMillis": "1600964284200",
+ "buildStep": {
+  "cmdId": "9b59b1c4-3e70-4e95-97ac-e81e895f50f6",
+  "name": "vitis_hls",
+  "logFile": "/scratch/ravic/Port_DDR_to_HBM/build/HBM/temp_dir/vadd_hw/vadd/vitis_hls.log",
+  "commandLine": "vitis_hls -f /scratch/ravic/Port_DDR_to_HBM/build/HBM/temp_dir/vadd_hw/vadd/vadd.tcl -messageDb vitis_hls.pb",
+  "args": [
+   "vitis_hls",
+   "-f",
+   "/scratch/ravic/Port_DDR_to_HBM/build/HBM/temp_dir/vadd_hw/vadd/vadd.tcl",
+   "-messageDb",
+   "vitis_hls.pb"
+  ],
+  "iniFiles": [],
+  "cwd": "/scratch/ravic/Port_DDR_to_HBM/makefile"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Sep 24 10:18:04 2020",
+ "timestampMillis": "1600964284201",
+ "status": {
+  "cmdId": "9b59b1c4-3e70-4e95-97ac-e81e895f50f6",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Sep 24 10:19:27 2020",
+ "timestampMillis": "1600964367742",
+ "status": {
+  "cmdId": "9b59b1c4-3e70-4e95-97ac-e81e895f50f6",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Sep 24 10:19:27 2020",
+ "timestampMillis": "1600964367753",
+ "report": {
+  "path": "/scratch/ravic/Port_DDR_to_HBM/build/HBM/temp_dir/vadd_hw/vadd/vadd/solution/.autopilot/db/vadd.design.xml",
+  "name": "vadd",
+  "fileType": "XML",
+  "reportType": "KERNEL_HLS_REPORT"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Sep 24 10:19:27 2020",
+ "timestampMillis": "1600964367754",
+ "report": {
+  "path": "/scratch/ravic/Port_DDR_to_HBM/build/HBM/temp_dir/vadd_hw/vadd/vadd/solution/.autopilot/db/.message_syn.xml",
+  "name": "vadd",
+  "fileType": "XML",
+  "reportType": "KERNEL_HLS_DRC_SYNTHESIS"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Sep 24 10:19:27 2020",
+ "timestampMillis": "1600964367754",
+ "report": {
+  "path": "/scratch/ravic/Port_DDR_to_HBM/build/HBM/report_dir/vadd_hw/hls_reports/vadd_csynth.rpt",
+  "name": "vadd",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_HLS_CSYNTH"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Sep 24 10:19:27 2020",
+ "timestampMillis": "1600964367755",
+ "report": {
+  "path": "/scratch/ravic/Port_DDR_to_HBM/build/HBM/temp_dir/vadd_hw/vadd/vadd/solution/syn/report/vadd_csynth.xml",
+  "name": "vadd",
+  "fileType": "XML",
+  "reportType": "KERNEL_HLS_CSYNTH"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Sep 24 10:19:27 2020",
+ "timestampMillis": "1600964367761",
+ "report": {
+  "path": "/scratch/ravic/Port_DDR_to_HBM/build/HBM/report_dir/vadd_hw/system_estimate_vadd_hw.xtxt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SYSTEM_ESTIMATE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Sep 24 10:19:28 2020",
+ "timestampMillis": "1600964368168",
+ "report": {
+  "path": "/scratch/ravic/Port_DDR_to_HBM/build/HBM/report_dir/vadd_hw/v++_compile_vadd_hw_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Sep 24 10:19:28 2020",
+ "timestampMillis": "1600964368169",
+ "report": {
+  "path": "/scratch/ravic/Port_DDR_to_HBM/build/HBM/temp_dir/v++_compile_vadd_hw_guidance.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Sep 24 10:19:28 2020",
+ "timestampMillis": "1600964368169",
+ "status": {
+  "cmdId": "00a71dad-da41-44d9-93f5-42ef47dff6cd",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
