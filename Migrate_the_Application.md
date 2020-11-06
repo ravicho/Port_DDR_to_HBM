@@ -1,4 +1,4 @@
-# Application Overview
+## Application Overview
 
 This tutorial uses a simple example of vector addition. It shows the vadd kernel reading data from in1 and in2 and producing the result, out.
 
@@ -81,7 +81,7 @@ TEST PASSED
 
 The host is sending 600MB data to DDR0 and DDR1. The kernel reads this data using in1, in2 ports from DDR0 and DDR1 respectively. The vector addition is performed by kernel and results are written to DDR2. This results from DDR2 are migrated back to host. The next section goes over the steps required to migrate this DDR based application to HBM.  
 
-# Migration to HBM
+## Migration to HBM
 
 The host code and kernel code are agnostic to the memory type used, wheather DDR is used or HBM or even PLRAMs. The only change you will need to make here is to modify the connectivity file. 
 
@@ -176,10 +176,3 @@ For above connectivity, XRT will allocate the first buffer connected to in1 port
 
 Explain the difference here if its all the banks or 3 per port????s
 
-To run the application 
-
-```bash
-make hbm_addSeq_2
-```
-
-The above command shows the following results
