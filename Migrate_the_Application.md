@@ -1,11 +1,8 @@
 ## Application Overview
 
-This tutorial uses a simple example of vector addition. It shows the vadd kernel reading data from in1 and in2 and producing the result, out.
+This tutorial uses a simple example of vector addition. It shows the  kernel reading data from in1 and in2 and producing the result, out.
 
 The origianl application is implemted using DDR. Ports `in1` and `in2` are reading from DDR banks 0 and 1 respectively and port `out` is writing the results in DDR bank 2. The tutorial will walk through the necessary changes to the exisintg application to migrate to HBM.
-
-The kernel code is available in
-The host code is available in `./reference_files/host.cpp`
 
 The kernel code is a simple vector addition with the following function signature. 
 
@@ -40,6 +37,22 @@ sp=vadd_1.out:DDR[1]
 ```
 
 The host code creates three buffers, one each in DDR0, DDR1 and DDR2 and connectivity is established for these bufferes to the kernel arguments. Each buffer is connected to a single DDR bank with capacity of 16GB which is higher than the buffer size used in this application. You should be able to migrate up to 4GB due to limitation on linux kernel. 
+
+The following code creates the 3 buffers of size, vector_size_bytes which can be controlled as an argument during the application runtime. 
+
+```
+134 : cl::Buffer(context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, vector_size_bytes, &source_in1[total_data_size]);
+135 : cl::Buffer(context,CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, vector_size_bytes, &source_in2[total_data_size]);
+136 : cl::Buffer(context,CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, vector_size_bytes, &source_hw_results[total_data_size]);
+```
+
+```
+140 : krnl_vector_add.setArg(1, buffer_in2[j]));
+141 : krnl_vector_add.setArg(0, buffer_in1[j]));
+142 : krnl_vector_add.setArg(2, buffer_output[j]));
+```
+
+For more infomration on the kernel source code, refer to  `./reference_files/host.cpp`
 
 Let's run the application on hardware using DDR with buffer size of 600MB, sequential address pattern, enque the kernel 64 times. Here is the makefile command that can be used 
 
