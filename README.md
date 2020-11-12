@@ -3,12 +3,12 @@ This tutorial covers essential steps how to migrate an existing application usin
 
 ## Tutorial Overview
 
-### Structural Differences between DDR and HBM 
-### HBM usage for achieving better bandwidth than DDR 
+### Structural Differences between DDR and HBM (Dave)
+### HBM usage for achieving better bandwidth than DDR (Dave)
 ### Theoretical maximum Bandwidth using HBM (Dave)
-### How does access patterns affect the BW (stacks/banks)   
-### Overview of existing Application
-### Migration from DDR to HBM
+### How does access patterns affect the BW (stacks/banks)   (Herve)
+### Overview of existing Application (Ravi)
+### Migration from DDR to HBM (Ravi)
 ### 
   
 
@@ -38,15 +38,16 @@ This HBM implementation does not support partial memory transfers. The best perf
 
 
 
-
-
-
-
-
-
-
-
 Introduce various possible usages available in the cross-bar, how you are accessing it?
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Next Steps
+
+In the next step, you will follow the instructions how to migrate a DDR based application to HBM.
+
+
+
+
 
 
 <p align="center"><b>

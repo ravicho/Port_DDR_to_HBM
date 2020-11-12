@@ -151,7 +151,7 @@ As expected, the application results into error as you are trying to create 600 
 
 Next, we are going to increase the numbe of HBM banks connected to the ports to 3 banks instead of 2 for each port as in previous case. For simplicity, we have connected all the ports to 32 banks as shown below. 
 
-Let's use the following connectivity file that utilizes 3 HBM memory banks.
+Let's use the following connectivity file that utilizes 3 HBM memory banks. 
 
 ```bash
 [connectivity]
@@ -159,6 +159,9 @@ sp=vadd_1.in1:HBM[0:1]
 sp=vadd_1.in2:HBM[2:3]
 sp=vadd_1.out:HBM[4:5]
 ```
+
+For above connectivity, kernel in1 port is connected to contiguous HBM banks 0 and 1, in2 port is connected to contiguous HBM banks 2 and 3 and out port is connected to HBM banks 4 and 5.
+
 Run the following command to use the application with HBM memmory of 768MB for in1,in2 and out ports.
 
 ``` bash
@@ -185,7 +188,6 @@ Throughput Achived = 0.253012 GB/s
 TEST PASSED
 ```
 
-For above connectivity, XRT will allocate the first buffer connected to in1 port infrom the host into banks 0:2
+In the last step, there were 3 ports connected to each input/output kernel port. You can also connect all the 32 HBM banks to each of the ports based on application requirement. This way, the whole memory space will be available to all the ports. The overall HBM efficienty will vary based on the access pattern as descibed in the previous module of this tutorial. 
 
-Explain the difference here if its all the banks or 3 per port????s
 
