@@ -1,5 +1,5 @@
 # Intro
-This tutorial covers essential steps how to migrate an existing application using DDR memory to HBM memory.  You begin this tutorial by explaining the structural differences between DDR and HBM and ways to achieve the ways to achieve the better bandwidth than DDR. 
+This tutorial covers essential steps how to migrate an existing application using DDR memory to HBM memory.  You begin this tutorial by explaining the structural differences between DDR and achievable theoratical bandwidth. The next section uses a simple example with necessary steps to migration an application from DDR to HBM. 
 
 ## Tutorial Overview
 

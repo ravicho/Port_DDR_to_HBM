@@ -83,7 +83,7 @@ DEVICE xilinx_u200_xdma_201830_2
 INFO: Reading vadd_hw.xclbin
 Loading: 'vadd_hw.xclbin'
 
- Total Data of 600.000 Mbytes Written to be written to global memory from host
+ Total Data of 600.000 Mbytes to be written to global memory from host
  
  Kernel is invoked 1 time and repeats iteself 64 times 
 
@@ -124,7 +124,7 @@ DEVICE xilinx_u50_gen3x4_xdma_base_2
 INFO: Reading vadd_hw.xclbin
 Loading: 'vadd_hw.xclbin'
 
- Total Data of 600.000 Mbytes Written to be written to global memory from host
+ Total Data of 600.000 Mbytes to be written to global memory from host
  
  Kernel is invoked 1 time and repeats iteself 64 times 
 
@@ -176,7 +176,7 @@ DEVICE xilinx_u50_gen3x4_xdma_base_2
 INFO: Reading vadd_hw.xclbin
 Loading: 'vadd_hw.xclbin'
 
- Total Data of 600.000 Mbytes Written to be written to global memory from host
+ Total Data of 600.000 Mbytes to be written to global memory from host
  
  Kernel is invoked 1 time and repeats iteself 64 times 
 
