@@ -17,8 +17,9 @@ else
 PLATFORM :=xilinx_u50lv_gen3x4_xdma_2_202010_1
 endif
 
-ifeq ($(BANKS),2)
-BANKS = 2
+OVERLAP :=
+ifeq ($(OVERLAP_BANKS),1)
+OVERLAP = _overlap
 endif
 
 
@@ -76,10 +77,12 @@ endif
 
 ddr_addSeq:
 	make run TARGET=hw MEMTYPE=DDR DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 BUILDXCLBIN=0
-hbm_addSeq_2:
-	make run TARGET=hw MEMTYPE=HBM BANKS=2 DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 BUILDXCLBIN=0
-hbm_addSeq:
-	make run TARGET=hw MEMTYPE=HBM DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 BUILDXCLBIN=0
+hbm_addSeq_banks_2:
+	make run TARGET=hw MEMTYPE=HBM BANKS=2 DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 BUILDXCLBIN=1
+hbm_addSeq_banks_3:
+	make run TARGET=hw MEMTYPE=HBM BANKS=3 DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 BUILDXCLBIN=1
+hbm_addSeq_overlap_banks_2:
+	make run TARGET=hw MEMTYPE=HBM BANKS=2 DSIZE=384 ADDRNDM=0 KRNL_LOOP=64 BUILDXCLBIN=1 OVERLAP_BANKS=1
 ddr_addRandom:
 	make run TARGET=hw MEMTYPE=DDR DSIZE=256 ADDRNDM=1 KRNL_LOOP=64 BUILDXCLBIN=0
 hbm_addRandom:
@@ -104,7 +107,8 @@ help:
 	@echo  " "
 	@echo  "   > For using DDR with Sequential Address Access -- make ddr_addSeq "
 	@echo  "   > For using DDR with Random     Address Access -- make ddr_addRandom"
-	@echo  "   > For using HBM with Sequential Address Access -- make hbm_addSeq_2 - This should error out as only 2 banks used and data xfer is > 512M"
-	@echo  "   > For using HBM with Sequential Address Access -- make hbm_addSeq   - This should PASS as kernel is not constraint to just 2 banks"
+	@echo  "   > For using HBM with Sequential Address Access -- make hbm_addSeq_banks_2 - This should error out as only 2 banks used and data xfer is > 512M"
+	@echo  "   > For using HBM with Sequential Address Access -- make hbm_addSeq_banks_3 - This should PASS as kernel is not constraint to just 2 banks"
+	@echo  "   > For using HBM with Sequential Address Access -- make hbm_addSeq_overlap_banks_2 - This enables configuration with overlapping banks"
 	@echo  "   > For using HBM with Random     Address Access -- make hbm_addRandom "
 

@@ -9,7 +9,6 @@
 		--report_dir ./$(BUILDDIR)/report_dir \
 		--log_dir ./$(BUILDDIR)/log_dir \
 		-I$(SRCDIR) \
-		--config ./bandwidth.ini \
 		-DNDDR_BANKS=$(BANKS) \
 		$(HOST_SRC_FPGA) \
 		-o ./$(BUILDDIR)/vadd_$(TARGET).xo
@@ -23,7 +22,7 @@
 		--temp_dir ./$(BUILDDIR)/temp_dir \
 		--report_dir ./$(BUILDDIR)/report_dir \
 		--log_dir ./$(BUILDDIR)/log_dir \
-		--config $(CURRENT_DIR)/$(MEMTYPE)$(BANKS).cfg \
+		--config $(CURRENT_DIR)/$(MEMTYPE)_banks$(BANKS)$(OVERLAP).cfg \
 		-I$(SRCDIR) \
 		-DNDDR_BANKS=$(BANKS) \
 		./$(BUILDDIR)/vadd_$(TARGET).xo \
