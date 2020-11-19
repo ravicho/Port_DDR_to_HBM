@@ -14,7 +14,7 @@ SRCDIR := ./../reference_files
 ifeq ($(MEMTYPE), DDR)
 PLATFORM :=xilinx_u200_xdma_201830_2
 else
-PLATFORM :=xilinx_u50lv_gen3x4_xdma_2_202010_1
+PLATFORM :=xilinx_u50_gen3x16_xdma_201920_3
 endif
 
 OVERLAP :=
@@ -27,7 +27,7 @@ endif
 
 # Default Settings here ..
 HOST_SRC_CPP := $(SRCDIR)/host.cpp
-BUILDDIR := ./../build/$(MEMTYPE)$(BANKS)
+BUILDDIR := ./../build/$(MEMTYPE)$(BANKS)$(OVERLAP)
 
 
 # Common Source Code for FPGA and Host
