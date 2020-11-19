@@ -1,0 +1,1030 @@
+<ENTRY>
+{
+ "thisFile": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/vadd_hw.xclbin.link_summary",
+ "connectId": "",
+ "serverToken": "",
+ "timestamp": "0"
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Thu Nov 19 09:21:34 2020",
+ "timestampMillis": "1605806494473",
+ "buildStep": {
+  "cmdId": "fa1d41f5-4adc-43ac-9baf-a0d9d7d2b3d3",
+  "name": "v++",
+  "logFile": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/link.steps.log",
+  "commandLine": "/proj/xbuilds/SWIP/2020.2_1109_1932/installs/lin64/Vitis/2020.2/bin/unwrapped/lnx64.o/v++  --xp \"vivado_prop:run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\" --xp vivado_param:project.writeIntermediateCheckpoints=1 --xp \"param:compiler.reportFailfast=pre_opt_design {__KERNEL_NAMES__} post_opt_design {__OCL_TOP__}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\" --xp \"misc:report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\" -l -g -t hw -R 1 --platform xilinx_u50_gen3x16_xdma_201920_3 --profile_kernel data:all:all:all --profile_kernel stall:all:all:all --temp_dir ././../build/HBM3/temp_dir --report_dir ././../build/HBM3/report_dir --log_dir ././../build/HBM3/log_dir --config /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile/HBM_banks3.cfg -I./../reference_files -DNDDR_BANKS=3 ././../build/HBM3/vadd_hw.xo -o ././../build/HBM3/vadd_hw.xclbin ",
+  "args": [
+   "-l",
+   "-g",
+   "-t",
+   "hw",
+   "-R",
+   "1",
+   "--platform",
+   "xilinx_u50_gen3x16_xdma_201920_3",
+   "--profile_kernel",
+   "data:all:all:all",
+   "--profile_kernel",
+   "stall:all:all:all",
+   "--temp_dir",
+   "././../build/HBM3/temp_dir",
+   "--report_dir",
+   "././../build/HBM3/report_dir",
+   "--log_dir",
+   "././../build/HBM3/log_dir",
+   "--config",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile/HBM_banks3.cfg",
+   "-I./../reference_files",
+   "-DNDDR_BANKS=3",
+   "././../build/HBM3/vadd_hw.xo",
+   "-o",
+   "././../build/HBM3/vadd_hw.xclbin"
+  ],
+  "iniFiles": [
+   {
+    "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile/HBM_banks3.cfg",
+    "content": "[connectivity]\nsp=vadd_1.in1:HBM[0:2]\nsp=vadd_1.in2:HBM[3:5]\nsp=vadd_1.out:HBM[6:8]\n"
+   }
+  ],
+  "cwd": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 09:21:34 2020",
+ "timestampMillis": "1605806494475",
+ "status": {
+  "cmdId": "fa1d41f5-4adc-43ac-9baf-a0d9d7d2b3d3",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_FlowMetaData",
+ "dateTimestamp": "Thu Nov 19 09:21:39 2020",
+ "timestampMillis": "1605806499743",
+ "buildSummary": {
+  "hardwarePlatform": "xilinx_u50_gen3x16_xdma_201920_3.xpfm",
+  "hardwareDsa": "hw.xsa",
+  "platformDirectory": "/proj/xbuilds/2020.2_daily_latest/internal_platforms/xilinx_u50_gen3x16_xdma_201920_3",
+  "runtime": "OpenCL",
+  "systemConfig": "Linux",
+  "flow": "BF_LINK",
+  "target": "TT_HW",
+  "binaryContainer": {
+   "base": {
+    "type": "BT_UKNOWN",
+    "name": "vadd_hw",
+    "file": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/vadd_hw.xclbin",
+    "reports": [],
+    "uuid": ""
+   },
+   "kernels": []
+  },
+  "kernels": [
+   {
+    "base": {
+     "type": "KERNEL",
+     "name": "vadd",
+     "file": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/vadd_hw.xo",
+     "reports": [],
+     "uuid": ""
+    },
+    "sources": [
+     "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/xo/vadd/vadd/cpu_sources/kernel.cpp"
+    ],
+    "psSources": [],
+    "cuNames": [
+     "vadd_1"
+    ],
+    "type": "HLS",
+    "frequency": 0,
+    "freqUnits": ""
+   }
+  ],
+  "toolVersion": "Vitis V++ Compiler Release 2020.2. SW Build (by xbuild) on 2020-11-09-09:52:52"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Nov 19 09:21:39 2020",
+ "timestampMillis": "1605806499963",
+ "buildStep": {
+  "cmdId": "d83ea81e-9894-4bd3-bfdc-846b450292f8",
+  "name": "system_link",
+  "logFile": "",
+  "commandLine": "system_link --xo /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/vadd_hw.xo --config /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/syslinkConfig.ini --xpfm /proj/xbuilds/2020.2_daily_latest/internal_platforms/xilinx_u50_gen3x16_xdma_201920_3/xilinx_u50_gen3x16_xdma_201920_3.xpfm --target hw --output_dir /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int --temp_dir /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/sys_link",
+  "args": [
+   "--xo",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/vadd_hw.xo",
+   "--config",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/syslinkConfig.ini",
+   "--xpfm",
+   "/proj/xbuilds/2020.2_daily_latest/internal_platforms/xilinx_u50_gen3x16_xdma_201920_3/xilinx_u50_gen3x16_xdma_201920_3.xpfm",
+   "--target",
+   "hw",
+   "--output_dir",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int",
+   "--temp_dir",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/sys_link"
+  ],
+  "iniFiles": [
+   {
+    "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/syslinkConfig.ini",
+    "content": "sp=vadd_1.in1:HBM[0:2]\nsp=vadd_1.in2:HBM[3:5]\nsp=vadd_1.out:HBM[6:8]\n\n"
+   }
+  ],
+  "cwd": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 09:21:39 2020",
+ "timestampMillis": "1605806499965",
+ "status": {
+  "cmdId": "d83ea81e-9894-4bd3-bfdc-846b450292f8",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 09:21:56 2020",
+ "timestampMillis": "1605806516029",
+ "status": {
+  "cmdId": "d83ea81e-9894-4bd3-bfdc-846b450292f8",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Nov 19 09:21:56 2020",
+ "timestampMillis": "1605806516036",
+ "buildStep": {
+  "cmdId": "42ff05e3-09a4-408c-89f6-bafea665b4a8",
+  "name": "cf2sw",
+  "logFile": "",
+  "commandLine": "cf2sw -sdsl /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/sdsl.dat -rtd /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/cf2sw.rtd -nofilter /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/cf2sw_full.rtd -xclbin /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/xclbin_orig.xml -o /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/xclbin_orig.1.xml",
+  "args": [
+   "-sdsl",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/sdsl.dat",
+   "-rtd",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/cf2sw.rtd",
+   "-nofilter",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/cf2sw_full.rtd",
+   "-xclbin",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/xclbin_orig.xml",
+   "-o",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/xclbin_orig.1.xml"
+  ],
+  "iniFiles": [],
+  "cwd": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 09:21:56 2020",
+ "timestampMillis": "1605806516037",
+ "status": {
+  "cmdId": "42ff05e3-09a4-408c-89f6-bafea665b4a8",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 09:21:58 2020",
+ "timestampMillis": "1605806518935",
+ "status": {
+  "cmdId": "42ff05e3-09a4-408c-89f6-bafea665b4a8",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Nov 19 09:21:58 2020",
+ "timestampMillis": "1605806518942",
+ "buildStep": {
+  "cmdId": "693a5761-a5b5-43b6-b191-c80beaf88256",
+  "name": "rtd2_system_diagram",
+  "logFile": "",
+  "commandLine": "rtd2SystemDiagram",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 09:21:58 2020",
+ "timestampMillis": "1605806518943",
+ "status": {
+  "cmdId": "693a5761-a5b5-43b6-b191-c80beaf88256",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 09:22:00 2020",
+ "timestampMillis": "1605806520679",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/systemDiagramModel.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 09:22:00 2020",
+ "timestampMillis": "1605806520681",
+ "status": {
+  "cmdId": "693a5761-a5b5-43b6-b191-c80beaf88256",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Nov 19 09:22:00 2020",
+ "timestampMillis": "1605806520691",
+ "buildStep": {
+  "cmdId": "230ad05a-07a7-43ba-b46f-5aeaefea306e",
+  "name": "vpl",
+  "logFile": "",
+  "commandLine": "vpl -t hw -f xilinx_u50_gen3x16_xdma_201920_3 -g --remote_ip_cache /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile/.ipcache --profile_kernel data:all:all:all --profile_kernel stall:all:all:all --output_dir /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int --log_dir /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/log_dir/link --report_dir /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link --config /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vplConfig.ini -k /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link --no-info --iprepo /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/xo/ip_repo/xilinx_com_hls_vadd_1_0 --messageDb /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/run_link/vpl.pb /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/dr.bd.tcl",
+  "args": [
+   "-t",
+   "hw",
+   "-f",
+   "xilinx_u50_gen3x16_xdma_201920_3",
+   "-g",
+   "--remote_ip_cache",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile/.ipcache",
+   "--profile_kernel",
+   "data:all:all:all",
+   "--profile_kernel",
+   "stall:all:all:all",
+   "--output_dir",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int",
+   "--log_dir",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/log_dir/link",
+   "--report_dir",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link",
+   "--config",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vplConfig.ini",
+   "-k",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/kernel_info.dat",
+   "--webtalk_flag",
+   "Vitis",
+   "--temp_dir",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link",
+   "--no-info",
+   "--iprepo",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/xo/ip_repo/xilinx_com_hls_vadd_1_0",
+   "--messageDb",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/run_link/vpl.pb",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/dr.bd.tcl"
+  ],
+  "iniFiles": [
+   {
+    "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vplConfig.ini",
+    "content": "[advanced]\nparam=compiler.reportFailfast=pre_opt_design {__KERNEL_NAMES__} post_opt_design {__OCL_TOP__}\nmisc=report=type report_timing_summary name impl_report_timing_summary_route_design_summary steps {route_design} runs {impl_1} options {-max_paths 10}\nmisc=report=type report_timing_summary name impl_report_timing_summary_post_route_phys_opt_design_summary steps {post_route_phys_opt_design} runs {impl_1} options {-max_paths 10}\nparam=compiler.enablePerformanceTrace=1\nparam=hw_emu.enableDebugWaveform=1\nparam=hw_emu.enableProfiling=1\nparam=compiler.vppCurrentWorkingDir=/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile\nmisc=BinaryName=vadd_hw\n\n[connectivity]\nnk=vadd:1:vadd_1\n\n[vivado]\nprop=run.__KERNEL__.{STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS}={-directive sdx_optimization_effort_high}\nparam=project.writeIntermediateCheckpoints=1\n\n"
+   }
+  ],
+  "cwd": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 09:22:00 2020",
+ "timestampMillis": "1605806520692",
+ "status": {
+  "cmdId": "230ad05a-07a7-43ba-b46f-5aeaefea306e",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_CmdStep",
+ "dateTimestamp": "Thu Nov 19 09:22:02 2020",
+ "timestampMillis": "1605806522724",
+ "buildStep": {
+  "cmdId": "0c9df69c-053d-4706-9a2c-c85aa6a980a0",
+  "name": "vpl",
+  "logFile": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/link.steps.log",
+  "commandLine": "/proj/xbuilds/SWIP/2020.2_1109_1932/installs/lin64/Vitis/2020.2/bin/unwrapped/lnx64.o/vpl -t hw -f xilinx_u50_gen3x16_xdma_201920_3 -g --remote_ip_cache /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile/.ipcache --profile_kernel data:all:all:all --profile_kernel stall:all:all:all --output_dir /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int --log_dir /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/log_dir/link --report_dir /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link --config /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vplConfig.ini -k /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/kernel_info.dat --webtalk_flag Vitis --temp_dir /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link --no-info --iprepo /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/xo/ip_repo/xilinx_com_hls_vadd_1_0 --messageDb /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/run_link/vpl.pb /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/dr.bd.tcl ",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/run_link"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 09:22:02 2020",
+ "timestampMillis": "1605806522724",
+ "status": {
+  "cmdId": "0c9df69c-053d-4706-9a2c-c85aa6a980a0",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_VivadoProject",
+ "dateTimestamp": "Thu Nov 19 09:22:06 2020",
+ "timestampMillis": "1605806526937",
+ "vivadoProject": {
+  "openDir": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/vivado/vpl",
+  "openScript": "openprj.tcl",
+  "relativeProject": "prj/prj.xpr"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Nov 19 09:22:06 2020",
+ "timestampMillis": "1605806526939",
+ "buildStep": {
+  "cmdId": "2ad00ed9-b019-4139-8d54-8f96e3fa5d46",
+  "name": "vivado",
+  "logFile": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/vivado/vpl/vivado.log",
+  "commandLine": "vivado -log vivado.log -applog -m64 -messageDb vivado.pb -mode batch -source vpl.tcl -notrace",
+  "args": [
+   "-log",
+   "vivado.log",
+   "-applog",
+   " -m64",
+   "-messageDb",
+   "vivado.pb",
+   "-mode",
+   "batch",
+   "-source",
+   "vpl.tcl",
+   "-notrace"
+  ],
+  "iniFiles": [],
+  "cwd": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/run_link"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 09:22:06 2020",
+ "timestampMillis": "1605806526940",
+ "status": {
+  "cmdId": "2ad00ed9-b019-4139-8d54-8f96e3fa5d46",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 09:25:09 2020",
+ "timestampMillis": "1605806709342",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/debug_ip_layout.rtd",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "DEBUG_IP_LAYOUT"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:29:51 2020",
+ "timestampMillis": "1605810591908",
+ "status": {
+  "cmdId": "2ad00ed9-b019-4139-8d54-8f96e3fa5d46",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592179",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_kernel_util_synthed.xutil",
+  "name": "",
+  "fileType": "XUTIL",
+  "reportType": "KERNEL_UTILIZATION_SYNTHESIS"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592182",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_kernel_util_synthed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_UTILIZATION_SYNTHESIS"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592186",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_full_util_synthed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_UTILIZATION_SYNTHESIS"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592190",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_full_util_synthed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_UTILIZATION_SYNTHESIS"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592193",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_kernel_util_placed.xutil",
+  "name": "",
+  "fileType": "XUTIL",
+  "reportType": "KERNEL_UTILIZATION_PLACEMENT"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592196",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_kernel_util_placed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_UTILIZATION_PLACEMENT"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592199",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_slr_util_placed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SLR_UTIL_PLACED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592202",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_slr_util_placed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_SLR_UTIL_PLACED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592210",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_kernel_util_routed.xutil",
+  "name": "",
+  "fileType": "XUTIL",
+  "reportType": "KERNEL_UTILIZATION_ROUTE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592213",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_kernel_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "KERNEL_UTILIZATION_ROUTE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592217",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_slr_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SLR_UTIL_ROUTED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592220",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_slr_util_routed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_SLR_UTIL_ROUTED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592223",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_full_util_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_UTILIZATION_ROUTE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592226",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_full_util_routed.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_UTILIZATION_ROUTE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592302",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_hw_bb_locked_timing_summary_routed.rpt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:52 2020",
+ "timestampMillis": "1605810592376",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/imp/impl_1_hw_bb_locked_timing_summary_routed.rpx",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_REPORT_TIMING_SUMMARY"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:29:58 2020",
+ "timestampMillis": "1605810598189",
+ "status": {
+  "cmdId": "0c9df69c-053d-4706-9a2c-c85aa6a980a0",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:29:58 2020",
+ "timestampMillis": "1605810598215",
+ "status": {
+  "cmdId": "230ad05a-07a7-43ba-b46f-5aeaefea306e",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Nov 19 10:29:58 2020",
+ "timestampMillis": "1605810598223",
+ "buildStep": {
+  "cmdId": "b6cb8a9e-a856-434d-a8ed-d781b655d6c3",
+  "name": "rtdgen",
+  "logFile": "",
+  "commandLine": "rtdgen",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:29:58 2020",
+ "timestampMillis": "1605810598224",
+ "status": {
+  "cmdId": "b6cb8a9e-a856-434d-a8ed-d781b655d6c3",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:29:58 2020",
+ "timestampMillis": "1605810598232",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vadd_hw_xml.rtd",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "XCLBIN_INFO"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Nov 19 10:29:58 2020",
+ "timestampMillis": "1605810598238",
+ "buildStep": {
+  "cmdId": "59d4b72c-2e26-4965-89c0-c3d5d2a696c5",
+  "name": "cf2sw",
+  "logFile": "",
+  "commandLine": "cf2sw -a /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/address_map.xml -sdsl /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/sdsl.dat -xclbin /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/xclbin_orig.xml -rtd /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vadd_hw.rtd -o /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vadd_hw.xml",
+  "args": [
+   "-a",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/address_map.xml",
+   "-sdsl",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/sdsl.dat",
+   "-xclbin",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/xclbin_orig.xml",
+   "-rtd",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vadd_hw.rtd",
+   "-o",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vadd_hw.xml"
+  ],
+  "iniFiles": [],
+  "cwd": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:29:58 2020",
+ "timestampMillis": "1605810598239",
+ "status": {
+  "cmdId": "59d4b72c-2e26-4965-89c0-c3d5d2a696c5",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:30:00 2020",
+ "timestampMillis": "1605810600669",
+ "status": {
+  "cmdId": "59d4b72c-2e26-4965-89c0-c3d5d2a696c5",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:30:00 2020",
+ "timestampMillis": "1605810600676",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/systemDiagramModelSlrBaseAddress.json",
+  "name": "",
+  "fileType": "JSON",
+  "reportType": "SYSTEM_DIAGRAM_PLUS"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Nov 19 10:30:00 2020",
+ "timestampMillis": "1605810600676",
+ "buildStep": {
+  "cmdId": "f007c717-2768-4e18-a8d7-37266ccae072",
+  "name": "rtdgen",
+  "logFile": "",
+  "commandLine": "writeSystemDiagram",
+  "args": [
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vadd_hw.rtd",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/systemDiagramModelSlrBaseAddress.json"
+  ],
+  "iniFiles": [],
+  "cwd": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:30:00 2020",
+ "timestampMillis": "1605810600677",
+ "status": {
+  "cmdId": "f007c717-2768-4e18-a8d7-37266ccae072",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:30:00 2020",
+ "timestampMillis": "1605810600679",
+ "status": {
+  "cmdId": "f007c717-2768-4e18-a8d7-37266ccae072",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:30:00 2020",
+ "timestampMillis": "1605810600681",
+ "status": {
+  "cmdId": "b6cb8a9e-a856-434d-a8ed-d781b655d6c3",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Nov 19 10:30:00 2020",
+ "timestampMillis": "1605810600689",
+ "buildStep": {
+  "cmdId": "76a77398-716c-4e25-bdec-d6fe31fcd435",
+  "name": "xclbinutil",
+  "logFile": "",
+  "commandLine": "xclbinutil --add-section DEBUG_IP_LAYOUT:JSON:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/debug_ip_layout.rtd --add-section BITSTREAM:RAW:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/partial.bit --force --target hw --key-value SYS:dfx_enable:true --add-section :JSON:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vadd_hw.rtd --append-section :JSON:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/appendSection.rtd --add-section CLOCK_FREQ_TOPOLOGY:JSON:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vadd_hw_xml.rtd --add-section BUILD_METADATA:JSON:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vadd_hw_build.rtd --add-section EMBEDDED_METADATA:RAW:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vadd_hw.xml --add-section SYSTEM_METADATA:RAW:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/systemDiagramModelSlrBaseAddress.json --key-value SYS:PlatformVBNV:xilinx_u50_gen3x16_xdma_201920_3 --output /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile/././../build/HBM3/vadd_hw.xclbin",
+  "args": [
+   "--add-section",
+   "DEBUG_IP_LAYOUT:JSON:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/debug_ip_layout.rtd",
+   "--add-section",
+   "BITSTREAM:RAW:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/partial.bit",
+   "--force",
+   "--target",
+   "hw",
+   "--key-value",
+   "SYS:dfx_enable:true",
+   "--add-section",
+   ":JSON:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vadd_hw.rtd",
+   "--append-section",
+   ":JSON:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/appendSection.rtd",
+   "--add-section",
+   "CLOCK_FREQ_TOPOLOGY:JSON:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vadd_hw_xml.rtd",
+   "--add-section",
+   "BUILD_METADATA:JSON:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vadd_hw_build.rtd",
+   "--add-section",
+   "EMBEDDED_METADATA:RAW:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/vadd_hw.xml",
+   "--add-section",
+   "SYSTEM_METADATA:RAW:/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/link/int/systemDiagramModelSlrBaseAddress.json",
+   "--key-value",
+   "SYS:PlatformVBNV:xilinx_u50_gen3x16_xdma_201920_3",
+   "--output",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile/././../build/HBM3/vadd_hw.xclbin"
+  ],
+  "iniFiles": [],
+  "cwd": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:30:00 2020",
+ "timestampMillis": "1605810600690",
+ "status": {
+  "cmdId": "76a77398-716c-4e25-bdec-d6fe31fcd435",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:30:00 2020",
+ "timestampMillis": "1605810600990",
+ "status": {
+  "cmdId": "76a77398-716c-4e25-bdec-d6fe31fcd435",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Nov 19 10:30:00 2020",
+ "timestampMillis": "1605810600996",
+ "buildStep": {
+  "cmdId": "62db731a-7cab-42e1-bac5-f549a14c668c",
+  "name": "xclbinutilinfo",
+  "logFile": "",
+  "commandLine": "xclbinutil --quiet --force --info /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile/././../build/HBM3/vadd_hw.xclbin.info --input /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile/././../build/HBM3/vadd_hw.xclbin",
+  "args": [
+   "--quiet",
+   "--force",
+   "--info",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile/././../build/HBM3/vadd_hw.xclbin.info",
+   "--input",
+   "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile/././../build/HBM3/vadd_hw.xclbin"
+  ],
+  "iniFiles": [],
+  "cwd": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:30:00 2020",
+ "timestampMillis": "1605810600996",
+ "status": {
+  "cmdId": "62db731a-7cab-42e1-bac5-f549a14c668c",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:30:01 2020",
+ "timestampMillis": "1605810601444",
+ "status": {
+  "cmdId": "62db731a-7cab-42e1-bac5-f549a14c668c",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_SubCmdStep",
+ "dateTimestamp": "Thu Nov 19 10:30:01 2020",
+ "timestampMillis": "1605810601450",
+ "buildStep": {
+  "cmdId": "65a4a10e-3e4a-4154-883a-03c2b74d3cea",
+  "name": "generate_sc_driver",
+  "logFile": "",
+  "commandLine": "",
+  "args": [],
+  "iniFiles": [],
+  "cwd": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/makefile"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:30:01 2020",
+ "timestampMillis": "1605810601451",
+ "status": {
+  "cmdId": "65a4a10e-3e4a-4154-883a-03c2b74d3cea",
+  "state": "CS_RUNNING"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:30:01 2020",
+ "timestampMillis": "1605810601453",
+ "status": {
+  "cmdId": "65a4a10e-3e4a-4154-883a-03c2b74d3cea",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:30:01 2020",
+ "timestampMillis": "1605810601469",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/system_estimate_vadd_hw.xtxt",
+  "name": "",
+  "fileType": "TEXT",
+  "reportType": "GLOBAL_SYSTEM_ESTIMATE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:30:03 2020",
+ "timestampMillis": "1605810603907",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/link/v++_link_vadd_hw_guidance.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:30:03 2020",
+ "timestampMillis": "1605810603907",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/v++_link_vadd_hw_guidance.pb",
+  "name": "",
+  "fileType": "BINARY_PROTOBUF",
+  "reportType": "GLOBAL_RULECHECK_GUIDANCE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Report",
+ "dateTimestamp": "Thu Nov 19 10:30:03 2020",
+ "timestampMillis": "1605810603910",
+ "report": {
+  "path": "/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/log_dir/optraceViewer.html",
+  "name": "",
+  "fileType": "HTML",
+  "reportType": "OPERATION_TRACE"
+ }
+}
+</ENTRY>
+<ENTRY>
+{
+ "type": "ET_Status",
+ "dateTimestamp": "Thu Nov 19 10:30:03 2020",
+ "timestampMillis": "1605810603913",
+ "status": {
+  "cmdId": "fa1d41f5-4adc-43ac-9baf-a0d9d7d2b3d3",
+  "state": "CS_PASSED"
+ }
+}
+</ENTRY>
