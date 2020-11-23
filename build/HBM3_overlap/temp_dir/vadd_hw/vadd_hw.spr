@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="vadd_hw" dir="">
+  <FileSets>
+    <FileSet Name="kernel_vadd" Type="DesignSrcs">
+      <File Path="/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp"/>
+      <Config/>
+    </FileSet>
+  </FileSets>
+  <Runs/>
+</project>

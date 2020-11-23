@@ -1,0 +1,31 @@
+INFO: [v++ 60-1306] Additional information associated with this v++ compile can be found at:
+	Reports: /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/vadd_hw
+	Log files: /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/log_dir/vadd_hw
+INFO: [v++ 60-1548] Creating build summary session with primary output /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/vadd_hw.xo.compile_summary, at Wed Nov 18 16:44:28 2020
+INFO: [v++ 60-1316] Initiating connection to rulecheck server, at Wed Nov 18 16:44:29 2020
+INFO: [v++ 60-1315] Creating rulecheck session with output '/wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/vadd_hw/v++_compile_vadd_hw_guidance.html', at Wed Nov 18 16:44:30 2020
+INFO: [v++ 60-895]   Target platform: /proj/xbuilds/2020.2_daily_latest/internal_platforms/xilinx_u50_gen3x16_xdma_201920_3/xilinx_u50_gen3x16_xdma_201920_3.xpfm
+INFO: [v++ 60-1578]   This platform contains Xilinx Shell Archive '/proj/xbuilds/2020.2_daily_latest/internal_platforms/xilinx_u50_gen3x16_xdma_201920_3/hw/hw.xsa'
+INFO: [v++ 74-74] Compiler Version string: 2020.2
+INFO: [v++ 60-585] Compiling for hardware target
+INFO: [v++ 60-423]   Target device: xilinx_u50_gen3x16_xdma_201920_3
+INFO: [v++ 60-242] Creating kernel: 'vadd'
+
+===>The following messages were generated while  performing high-level synthesis for kernel: vadd Log file: /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/vadd_hw/vadd/vitis_hls.log :
+INFO: [v++ 204-61] Pipelining loop 'read1'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'read1'
+INFO: [v++ 204-61] Pipelining loop 'read2'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'read2'
+INFO: [v++ 204-61] Pipelining loop 'vadd'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'vadd'
+INFO: [v++ 204-61] Pipelining loop 'write'.
+INFO: [v++ 200-1470] Pipelining result : Target II = 1, Final II = 1, Depth = 3, loop 'write'
+INFO: [v++ 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [v++ 200-789] **** Estimated Fmax: 411.00 MHz
+INFO: [v++ 60-594] Finished kernel compilation
+INFO: [v++ 60-244] Generating system estimate report...
+INFO: [v++ 60-1092] Generated system estimate report: /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/report_dir/vadd_hw/system_estimate_vadd_hw.xtxt
+INFO: [v++ 60-586] Created ././../build/HBM3/vadd_hw.xo
+INFO: [v++ 60-2343] Use the vitis_analyzer tool to visualize and navigate the relevant reports. Run the following command. 
+    vitis_analyzer /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/vadd_hw.xo.compile_summary 
+INFO: [v++ 60-791] Total elapsed time: 0h 1m 21s

@@ -1,0 +1,51 @@
+<profile>
+
+<section name = "Vitis HLS Report for 'vadd'" level="0">
+<item name = "Date">Wed Nov 18 16:45:04 2020
+</item>
+<item name = "Version">2020.2 (Build 3058579 on Mon Nov  9 16:10:39 MST 2020)</item>
+<item name = "Project">vadd</item>
+<item name = "Solution">solution (Vitis Kernel Flow Target)</item>
+<item name = "Product family">virtexuplus</item>
+<item name = "Target device">xcu50-fsvh2104-2-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">3.33 ns, 2.433 ns, 0.90 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">289, 278689, 0.963 us, 0.929 ms, 290, 278690, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- VITIS_LOOP_95_1">288, 278688, 18 ~ 17418, -, -, 16, no</column>
+<column name=" + VITIS_LOOP_99_2">16, 17416, 4 ~ 4354, -, -, 4, no</column>
+<column name="  ++ read1">1025, 1025, 3, 1, 1, 1024, yes</column>
+<column name="  ++ read2">1025, 1025, 3, 1, 1, 1024, yes</column>
+<column name="  ++ vadd">1025, 1025, 3, 1, 1, 1024, yes</column>
+<column name="  ++ write">1025, 1025, 3, 1, 1, 1024, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

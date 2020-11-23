@@ -1,0 +1,163 @@
+Begin Function 'vadd'
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp0_stage0)
+# ST_111
+local j <phi_109> <integer> <Phi> 'phi' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+add_ln109_1 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: j_reg_330[10:0] lv
+
+local add_ln109_1 <add_109> <integer> <Arithmetic> 'add' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+add_ln109_1 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: add_ln109_1_reg_901[10:0] lv
+
+local icmp_ln109_1 <icmp_109> <integer> <Comparator> 'icmp' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+icmp_ln109_1 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: icmp_ln109_1_reg_906[0:0] lv
+
+# ST_112
+local gmem_addr_read <read_112> <integer> <> 'read' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:112>
+gmem_addr_read /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:112
+reg: gmem_addr_read_reg_910[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp1_stage0)
+# ST_185
+local j_1 <phi_114> <integer> <Phi> 'phi' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:114>
+add_ln114_1 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:114
+reg: j_1_reg_342[10:0] lv
+
+local add_ln114_1 <add_114> <integer> <Arithmetic> 'add' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:114>
+add_ln114_1 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:114
+reg: add_ln114_1_reg_921[10:0] lv
+
+local icmp_ln114 <icmp_114> <integer> <Comparator> 'icmp' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:114>
+icmp_ln114 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:114
+reg: icmp_ln114_reg_926[0:0] lv
+
+# ST_186
+local gmem_addr_1_read <read_117> <integer> <> 'read' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:117>
+gmem_addr_1_read /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:117
+reg: gmem_addr_1_read_reg_930[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp2_stage0)
+# ST_189
+local j_2 <phi_122> <integer> <Phi> 'phi' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:122>
+add_ln122 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:122
+reg: j_2_reg_354[10:0] lv
+
+local icmp_ln122 <icmp_122> <integer> <Comparator> 'icmp' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:122>
+icmp_ln122 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:122
+reg: icmp_ln122_reg_940[0:0] lv
+
+local zext_ln122 <zext_122> <integer> <> 'zext' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:122>
+zext_ln122 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:122
+reg: zext_ln122_reg_944[63:0] lv
+
+# ST_190
+local add_ln126 <add_126> <integer> <Arithmetic> 'add' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:126>
+add_ln126 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:126
+reg: add_ln126_reg_959[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_pp3_stage0)
+# ST_194
+local j_3 <phi_129> <integer> <Phi> 'phi' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:129>
+add_ln129_1 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:129
+reg: j_3_reg_365[10:0] lv
+
+local icmp_ln129 <icmp_129> <integer> <Comparator> 'icmp' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:129>
+icmp_ln129 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:129
+reg: icmp_ln129_reg_975[0:0] lv
+
+# ST_195
+local vout_buffer_load <load_132> <integer> <ArrayAccess><ArrayLoad><MultiCycle> 'load' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:132>
+vout_buffer_load /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:132
+reg: vout_buffer_load_reg_984[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state1)
+# ST_1
+local xor_ln95 <xor_95> <integer> <Logic> 'xor' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:95>
+xor_ln95 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:95
+reg: xor_ln95_reg_830[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state114)
+# ST_114
+local gmem_addr_1 <getelementptr_114> <integer> <> 'getelementptr' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:114>
+gmem_addr_1 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:114
+reg: gmem_addr_1_reg_915[63:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state192)
+# ST_192
+local gmem_addr_2 <getelementptr_129> <integer> <> 'getelementptr' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:129>
+gmem_addr_2 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:129
+reg: gmem_addr_2_reg_964[63:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state2)
+# ST_2
+local count <> <integer> <Phi> 'phi' <>
+count /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:95
+reg: count_reg_296[31:0] lv
+
+local count_1 <add_95> <integer> <Arithmetic> 'add' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:95>
+count /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:95
+reg: count_1_reg_836[31:0] lv
+
+local tmp_3 <bitconcatenate_99> <integer> <> 'bitconcatenate' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:99>
+tmp_3 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:99
+reg: tmp_3_reg_844[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state3)
+# ST_3
+local i <> <integer> <Phi> 'phi' <>
+i /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:99
+reg: i_reg_307[31:0] lv
+
+local p_Result_s <> <integer> <> 'bitconcatenate' <>
+__Result__ /proj/xbuilds/SWIP/2020.2_1109_1932/installs/lin64/Vitis_HLS/2020.2/common/technology/autopilot/ap_int_base.h:669
+reg: p_Result_s_reg_852[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state39)
+# ST_39
+local in_index <> <integer> <Phi> 'phi' <>
+reg: in_index_reg_319[31:0] lv
+
+local chunk_size <select_106> <integer> <> 'select' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:106>
+chunk_size /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:106
+reg: chunk_size_reg_863[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state40)
+# ST_40
+local icmp_ln109 <icmp_109> <integer> <Comparator> 'icmp' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+icmp_ln109 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: icmp_ln109_reg_871[0:0] lv
+
+local sext_ln109 <sext_109> <integer> <> 'sext' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+sext_ln109 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: sext_ln109_reg_875[63:0] lv
+
+local gmem_addr <getelementptr_109> <integer> <> 'getelementptr' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+gmem_addr /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: gmem_addr_reg_881[63:0] lv
+
+local sub_ln109 <sub_109> <integer> <Arithmetic> 'sub' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+sub_ln109 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: sub_ln109_reg_887[31:0] lv
+
+
+RTL state condition: (1'b1 == ap_CS_fsm_state41)
+# ST_41
+local sub_ln109_1 <sub_109> <integer> <Arithmetic> 'sub' </wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109>
+sub_ln109_1 /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/reference_files/kernel.cpp:109
+reg: sub_ln109_1_reg_893[31:0] lv
+
+
+End Function 'vadd'
+

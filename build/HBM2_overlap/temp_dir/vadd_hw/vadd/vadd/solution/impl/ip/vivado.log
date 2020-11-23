@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3058579 on Mon Nov  9 16:10:39 MST 2020
+# IP Build 3058553 on Mon Nov  9 20:58:29 MST 2020
+# Start of session at: Wed Nov 18 16:45:13 2020
+# Process ID: 88340
+# Current directory: /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/vadd_hw/vadd/vadd/solution/impl/ip
+# Command line: vivado -notrace -mode batch -source run_ippack.tcl
+# Log file: /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/vadd_hw/vadd/vadd/solution/impl/ip/vivado.log
+# Journal file: /wrk/xsjhdnobkup5/ravic/work/Port_DDR_to_HBM/build/HBM3/temp_dir/vadd_hw/vadd/vadd/solution/impl/ip/vivado.jou
+#-----------------------------------------------------------
+Sourcing tcl script '/home/ravic/.Xilinx/Vivado/Vivado_init.tcl'
+54 Beta devices matching pattern found, 54 enabled.
+enable_beta_device: Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 2536.746 ; gain = 10.023 ; free physical = 19353 ; free virtual = 166675
+0 Beta devices matching pattern found, 0 enabled.
+0 Beta devices matching pattern found, 0 enabled.
+0 Beta devices matching pattern found, 0 enabled.
+0 Beta devices matching pattern found, 0 enabled.
+0 Beta devices matching pattern found, 0 enabled.
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/proj/xbuilds/SWIP/2020.2_1109_1932/installs/lin64/Vivado/2020.2/data/ip'.
+INFO: [Common 17-206] Exiting Vivado at Wed Nov 18 16:45:39 2020...
