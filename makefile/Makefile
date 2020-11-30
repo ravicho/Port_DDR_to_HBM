@@ -27,7 +27,7 @@ endif
 
 # Default Settings here ..
 HOST_SRC_CPP := $(SRCDIR)/host.cpp
-BUILDDIR := ./../build/$(MEMTYPE)$(BANKS)$(OVERLAP)
+BUILDDIR := ./../build/$(MEMTYPE)_banks$(BANKS)$(OVERLAP)
 
 
 # Common Source Code for FPGA and Host
@@ -82,7 +82,9 @@ hbm_addSeq_banks_2:
 hbm_addSeq_banks_3:
 	make run TARGET=hw MEMTYPE=HBM BANKS=3 DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 BUILDXCLBIN=0
 hbm_addSeq_overlap_banks_2:
-	make run TARGET=hw MEMTYPE=HBM BANKS=2 DSIZE=384 ADDRNDM=0 KRNL_LOOP=64 BUILDXCLBIN=0 OVERLAP_BANKS=1
+	make run TARGET=hw MEMTYPE=HBM BANKS=2 DSIZE=384 ADDRNDM=0 KRNL_LOOP=64 BUILDXCLBIN=1 OVERLAP_BANKS=1
+hbm_addSeq_banks_all:
+	make run TARGET=hw MEMTYPE=HBM BANKS=all DSIZE=600 ADDRNDM=0 KRNL_LOOP=64 BUILDXCLBIN=0
 ddr_addRandom:
 	make run TARGET=hw MEMTYPE=DDR DSIZE=256 ADDRNDM=1 KRNL_LOOP=64 BUILDXCLBIN=0
 hbm_addRandom:
@@ -107,8 +109,9 @@ help:
 	@echo  " "
 	@echo  "   > For using DDR with Sequential Address Access -- make ddr_addSeq "
 	@echo  "   > For using DDR with Random     Address Access -- make ddr_addRandom"
-	@echo  "   > For using HBM with Sequential Address Access -- make hbm_addSeq_banks_2 - This should error out as only 2 banks used and data xfer is > 512M"
-	@echo  "   > For using HBM with Sequential Address Access -- make hbm_addSeq_banks_3 - This should PASS as kernel is not constraint to just 2 banks"
+	@echo  "   > For using HBM with Sequential Address Access -- make hbm_addSeq_banks_2         - This should error out as only 2 banks used and data xfer is > 512M"
+	@echo  "   > For using HBM with Sequential Address Access -- make hbm_addSeq_banks_3         - This should PASS as kernel is not constraint to just 2 banks"
 	@echo  "   > For using HBM with Sequential Address Access -- make hbm_addSeq_overlap_banks_2 - This enables configuration with overlapping banks"
+	@echo  "   > For using HBM with Sequential Address Access -- make hbm_addSeq_banks_all       - This enables configuration with overlapping banks"
 	@echo  "   > For using HBM with Random     Address Access -- make hbm_addRandom "
 
