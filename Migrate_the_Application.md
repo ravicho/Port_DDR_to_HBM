@@ -205,7 +205,7 @@ The ports in1 and in2 and sharing bank 1 of HBM. So application can create a max
 Run the following command to use the application with HBM memmory of size 384MB for in1,in2 and out ports.
 
 ``` bash
-make make hbm_addSeq_overlap_banks_2
+make hbm_addSeq_overlap_banks_2
 ```
 
 
