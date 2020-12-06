@@ -109,7 +109,7 @@ sp=vadd_1.in1:HBM[0:1]
 sp=vadd_1.in2:HBM[2:3]
 sp=vadd_1.out:HBM[4:5]
 ```
-Run the following command to use the application with HBM memmory of 512MB for in1,in2 and out ports.
+Run the following command to use the application with HBM memmory of size 512MB for in1,in2 and out ports.
 
 ``` bash
 make hbm_addSeq_2
@@ -147,22 +147,22 @@ Makefile:80: recipe for target 'hbm_addSeq_2' failed
 make: *** [hbm_addSeq_2] Error 2
 ```
 
-As expected, the application results into error as you are trying to create 600 MB buffer in HBM[1:2]. XRT sees this as a contiguous memory of 256*2 = 512MB but the host is exceeding this size limit and thus resulting into application error. 
+As expected, the application results into error as you are trying to create 600 MB buffer in HBM[0:1]. XRT sees this as a contiguous memory of 256*2 = 512MB but the host is exceeding this size limit and thus resulting into application error. 
 
-Next, we are going to increase the numbe of HBM banks connected to the ports to 3 banks instead of 2 for each port as in previous case. For simplicity, we have connected all the ports to 32 banks as shown below. 
+Next, we are going to increase the number of HBM banks connected to the ports to 3 banks instead of 2 for each port as in previous case. For simplicity, we have connected all the ports to 32 banks as shown below. 
 
 Let's use the following connectivity file that utilizes 3 HBM memory banks. 
 
 ```bash
 [connectivity]
-sp=vadd_1.in1:HBM[0:1]
-sp=vadd_1.in2:HBM[2:3]
-sp=vadd_1.out:HBM[4:5]
+sp=vadd_1.in1:HBM[0:2]
+sp=vadd_1.in2:HBM[3:5]
+sp=vadd_1.out:HBM[6:8]
 ```
 
-For above connectivity, kernel in1 port is connected to contiguous HBM banks 0 and 1, in2 port is connected to contiguous HBM banks 2 and 3 and out port is connected to HBM banks 4 and 5.
+For above connectivity, kernel in1 port is connected to contiguous HBM banks 0, 1 and 2, in2 port is connected to contiguous HBM banks 3, 4 and 5 and out port is connected to HBM banks 6, 7 and 8.
 
-Run the following command to use the application with HBM memmory of 768MB for in1,in2 and out ports.
+Run the following command to use the application with HBM memmory of size 768MB for in1,in2 and out ports.
 
 ``` bash
 make hbm_addSeq_3
@@ -188,6 +188,28 @@ Throughput Achived = 0.253012 GB/s
 TEST PASSED
 ```
 
-In the last step, there were 3 ports connected to each input/output kernel port. You can also connect all the 32 HBM banks to each of the ports based on application requirement. This way, the whole memory space will be available to all the ports. The overall HBM efficienty will vary based on the access pattern as descibed in the previous module of this tutorial. 
+In the last step, there were 3 ports connected to each input/output kernel port. 
+
+
+If the application doesn't require the full memory bank, Vitis flow also provide the capability of sharing the memory banks across the ports. Here is one example of connectivity for sharing banks between ports in1 and in2.
+
+```bash
+[connectivity]
+sp=vadd_1.in1:HBM[0:1]
+sp=vadd_1.in2:HBM[1:2]
+sp=vadd_1.out:HBM[3:4]
+```
+
+The ports in1 and in2 and sharing bank 1 of HBM. So application can create a max of 384MB buffer size for each input. 
+
+Run the following command to use the application with HBM memmory of size 384MB for in1,in2 and out ports.
+
+``` bash
+make hbm_addSeq_overlap_banks_2
+```
+
+
+
+You can also connect all the 32 HBM banks to each of the ports based on application requirement. This way, the whole memory space will be available to all the ports. The overall HBM efficienty will vary based on the access pattern as descibed in the previous module of this tutorial. 
 
 
