@@ -52,7 +52,7 @@ In the next step, you will follow the instructions how to migrate a DDR based ap
 
 
 <p align="center"><b>
-Start the next step: <a href="2_Migrate_to_HBM.md"> Migrate the application to HBM</a>
+Start the next step: <a href="2_Migrating_to_HBM.md"> Migrate the application to HBM</a>
 </b></p>
 </br>
 <hr/>
